@@ -60,7 +60,7 @@ export function pageTheory(): HTMLElement {
           El sistema continuo de ecuaciones diferenciales ordinarias (EDO) no lineales con ley de acción de masas estándar se expresa como:
         </p>
 
-        <div style="background: var(--bg); padding: var(--space-4); border-radius: var(--radius); margin: var(--space-4) 0; overflow-x: auto;">
+        <div class="math-block-wrap">
           ${renderMathBlock(`\\begin{aligned}
             \\frac{dS}{dt} &= -\\frac{\\beta S I}{N} \\\\[8pt]
             \\frac{dI}{dt} &= \\frac{\\beta S I}{N} - \\gamma I \\\\[8pt]
@@ -72,8 +72,11 @@ export function pageTheory(): HTMLElement {
           Sumando las tres ecuaciones miembro a miembro obtenemos la conservación estricta de la masa o población:
         </p>
 
-        <div style="background: var(--bg); padding: var(--space-3); border-radius: var(--radius); margin: var(--space-4) 0; overflow-x: auto;">
-          ${renderMathBlock(`\\frac{d}{dt}(S + I + R) = -\\frac{\\beta S I}{N} + \\left(\\frac{\\beta S I}{N} - \\gamma I\\right) + \\gamma I = 0 \\implies S(t) + I(t) + R(t) = N, \\quad \\forall t \\ge 0`)}
+        <div class="math-block-wrap">
+          ${renderMathBlock(`\\begin{aligned}
+            \\frac{d}{dt}(S + I + R) &= -\\frac{\\beta S I}{N} + \\left(\\frac{\\beta S I}{N} - \\gamma I\\right) + \\gamma I = 0 \\\\[6pt]
+            &\\implies S(t) + I(t) + R(t) = N, \\quad \\forall t \\ge 0
+          \\end{aligned}`)}
         </div>
       </section>
 
@@ -87,15 +90,18 @@ export function pageTheory(): HTMLElement {
           No obstante, eliminando la variable temporal <em>t</em> mediante la regla de la cadena, podemos reducir el sistema 2D de <em>(S, I)</em> a una única ecuación diferencial ordinaria separable:
         </p>
 
-        <div style="background: var(--bg); padding: var(--space-4); border-radius: var(--radius); margin: var(--space-4) 0; overflow-x: auto;">
-          ${renderMathBlock(`\\frac{dI}{dS} = \\frac{dI/dt}{dS/dt} = \\frac{\\frac{\\beta S I}{N} - \\gamma I}{-\\frac{\\beta S I}{N}} = -1 + \\frac{\\gamma N}{\\beta S} = -1 + \\frac{N}{R_0 S}`)}
+        <div class="math-block-wrap">
+          ${renderMathBlock(`\\begin{aligned}
+            \\frac{dI}{dS} &= \\frac{dI/dt}{dS/dt} = \\frac{\\frac{\\beta S I}{N} - \\gamma I}{-\\frac{\\beta S I}{N}} \\\\[8pt]
+            &= -1 + \\frac{\\gamma N}{\\beta S} = -1 + \\frac{N}{R_0 S}
+          \\end{aligned}`)}
         </div>
 
         <p style="line-height: 1.7; font-size: var(--step-0); color: var(--ink-2);">
           Integrando directamente ambos miembros respecto a <em>S</em>:
         </p>
 
-        <div style="background: var(--bg); padding: var(--space-4); border-radius: var(--radius); margin: var(--space-4) 0; overflow-x: auto;">
+        <div class="math-block-wrap">
           ${renderMathBlock(`\\int dI = \\int \\left(-1 + \\frac{N}{R_0 S}\\right) dS \\implies I + S - \\frac{N}{R_0} \\ln S = C`)}
         </div>
 
@@ -103,7 +109,7 @@ export function pageTheory(): HTMLElement {
           Evaluando la constante de integración en las condiciones iniciales <em>(S₀, I₀)</em>:
         </p>
 
-        <div style="background: var(--bg); padding: var(--space-3); border-radius: var(--radius); margin: var(--space-4) 0; overflow-x: auto;">
+        <div class="math-block-wrap">
           ${renderMathBlock(`I(t) + S(t) - \\frac{N}{R_0} \\ln S(t) = I_0 + S_0 - \\frac{N}{R_0} \\ln S_0`)}
         </div>
 
@@ -121,15 +127,18 @@ export function pageTheory(): HTMLElement {
           Analizando la segunda ecuación diferencial del sistema:
         </p>
 
-        <div style="background: var(--bg); padding: var(--space-3); border-radius: var(--radius); margin: var(--space-4) 0; overflow-x: auto;">
-          ${renderMathBlock(`\\frac{dI}{dt} = \\left(\\frac{\\beta S}{N} - \\gamma\\right) I = \\gamma \\left(\\frac{\\beta}{\\gamma} \\frac{S}{N} - 1\\right) I = \\gamma \\big(R_{ef}(t) - 1\\big) I`)}
+        <div class="math-block-wrap">
+          ${renderMathBlock(`\\begin{aligned}
+            \\frac{dI}{dt} &= \\left(\\frac{\\beta S}{N} - \\gamma\\right) I \\\\[6pt]
+            &= \\gamma \\left(\\frac{\\beta}{\\gamma} \\frac{S}{N} - 1\\right) I = \\gamma \\big(R_{ef}(t) - 1\\big) I
+          \\end{aligned}`)}
         </div>
 
         <p style="line-height: 1.7; font-size: var(--step-0); color: var(--ink-2);">
           Al inicio del brote, cuando casi la totalidad de la población es susceptible (${renderMathInline('S_0 \\approx N')}):
         </p>
 
-        <div style="background: var(--bg); padding: var(--space-3); border-radius: var(--radius); margin: var(--space-4) 0; overflow-x: auto;">
+        <div class="math-block-wrap">
           ${renderMathBlock(`\\left.\\frac{dI}{dt}\\right|_{t=0} > 0 \\iff R_0 = \\frac{\\beta}{\\gamma} > 1`)}
         </div>
 
@@ -137,7 +146,7 @@ export function pageTheory(): HTMLElement {
           <strong>Estabilidad lineal (Jacobiano):</strong> En el conjunto de equilibrios libres de infección ${renderMathInline('(S^*, 0)')}, la matriz jacobiana evaluada resulta:
         </p>
 
-        <div style="background: var(--bg); padding: var(--space-4); border-radius: var(--radius); margin: var(--space-4) 0; overflow-x: auto;">
+        <div class="math-block-wrap">
           ${renderMathBlock(`J(S^*, 0) = \\begin{pmatrix} 0 & -\\frac{\\beta S^*}{N} \\\\[6pt] 0 & \\frac{\\beta S^*}{N} - \\gamma \\end{pmatrix}`)}
         </div>
 
@@ -155,7 +164,7 @@ export function pageTheory(): HTMLElement {
           El pico máximo de infectados activos ${renderMathInline('I_{\\max}')} se produce en el punto crítico en que ${renderMathInline('dI/dt = 0')}:
         </p>
 
-        <div style="background: var(--bg); padding: var(--space-3); border-radius: var(--radius); margin: var(--space-4) 0; overflow-x: auto;">
+        <div class="math-block-wrap">
           ${renderMathBlock(`\\frac{dI}{dt} = 0 \\implies \\frac{\\beta S_{pico}}{N} - \\gamma = 0 \\implies S_{pico} = \\frac{N}{R_0}`)}
         </div>
 
@@ -163,7 +172,7 @@ export function pageTheory(): HTMLElement {
           Sustituyendo ${renderMathInline('S = N/R_0')} en la integral primera de la sección 2:
         </p>
 
-        <div style="background: var(--bg); padding: var(--space-4); border-radius: var(--radius); margin: var(--space-4) 0; overflow-x: auto;">
+        <div class="math-block-wrap">
           ${renderMathBlock(`I_{\\max} + \\frac{N}{R_0} - \\frac{N}{R_0} \\ln\\left(\\frac{N}{R_0}\\right) = I_0 + S_0 - \\frac{N}{R_0} \\ln S_0`)}
         </div>
 
@@ -171,7 +180,7 @@ export function pageTheory(): HTMLElement {
           Despejando directamente ${renderMathInline('I_{\\max}')}:
         </p>
 
-        <div style="background: var(--bg); padding: var(--space-4); border-radius: var(--radius); margin: var(--space-4) 0; overflow-x: auto;">
+        <div class="math-block-wrap">
           ${renderMathBlock(`I_{\\max} = I_0 + S_0 - \\frac{N}{R_0}\\left[1 + \\ln\\left(\\frac{R_0 S_0}{N}\\right)\\right]`)}
         </div>
 
@@ -179,7 +188,7 @@ export function pageTheory(): HTMLElement {
           <strong>Umbral de Inmunidad y Cobertura Crítica (${renderMathInline('p_c')}):</strong> Para evitar que el brote inicie, se debe reducir la fracción de susceptibles ${renderMathInline('S_0/N')} hasta que ${renderMathInline('R_{ef} \\le 1')}. Inmunizando una fracción ${renderMathInline('p')} de la población con una efectividad de parcheo ${renderMathInline('e')}:
         </p>
 
-        <div style="background: var(--bg); padding: var(--space-3); border-radius: var(--radius); margin: var(--space-4) 0; overflow-x: auto;">
+        <div class="math-block-wrap">
           ${renderMathBlock(`R_0 (1 - e \\cdot p) \\le 1 \\implies p_c = \\frac{1 - 1/R_0}{e}`)}
         </div>
       </section>
@@ -194,7 +203,7 @@ export function pageTheory(): HTMLElement {
           Evaluando la integral primera en ${renderMathInline('t = \\infty')}:
         </p>
 
-        <div style="background: var(--bg); padding: var(--space-4); border-radius: var(--radius); margin: var(--space-4) 0; overflow-x: auto;">
+        <div class="math-block-wrap">
           ${renderMathBlock(`S_\\infty - \\frac{N}{R_0} \\ln S_\\infty = I_0 + S_0 - \\frac{N}{R_0} \\ln S_0`)}
         </div>
 
@@ -202,7 +211,7 @@ export function pageTheory(): HTMLElement {
           Reorganizando algebraicamente con ${renderMathInline("N' = S_0 + I_0")}:
         </p>
 
-        <div style="background: var(--bg); padding: var(--space-4); border-radius: var(--radius); margin: var(--space-4) 0; overflow-x: auto;">
+        <div class="math-block-wrap">
           ${renderMathBlock(`\\ln\\left(\\frac{S_\\infty}{S_0}\\right) = -\\frac{R_0}{N}(N' - S_\\infty)`)}
         </div>
 
@@ -222,7 +231,7 @@ export function pageTheory(): HTMLElement {
           El modelo SEIR incorpora el estado <strong>E(t) [Expuesto / Latente]</strong>:
         </p>
 
-        <div style="background: var(--bg); padding: var(--space-4); border-radius: var(--radius); margin: var(--space-4) 0; overflow-x: auto;">
+        <div class="math-block-wrap">
           ${renderMathBlock(`\\begin{aligned}
             \\frac{dS}{dt} &= -\\frac{\\beta S I}{N} - \\nu(t) S \\\\[6pt]
             \\frac{dE}{dt} &= \\frac{\\beta S I}{N} - \\sigma E \\\\[6pt]
@@ -235,8 +244,11 @@ export function pageTheory(): HTMLElement {
           <strong>Campañas por impulsos:</strong> Cuando se despliegan parches masivos de seguridad en instantes discretos ${renderMathInline('t_k')}, el sistema se modela con operadores de salto:
         </p>
 
-        <div style="background: var(--bg); padding: var(--space-3); border-radius: var(--radius); margin: var(--space-4) 0; overflow-x: auto;">
-          ${renderMathBlock(`S(t_k^+) = S(t_k^-)(1 - p_k), \\quad R(t_k^+) = R(t_k^-) + p_k S(t_k^-)`)}
+        <div class="math-block-wrap">
+          ${renderMathBlock(`\\begin{aligned}
+            S(t_k^+) &= S(t_k^-)(1 - p_k) \\\\[6pt]
+            R(t_k^+) &= R(t_k^-) + p_k S(t_k^-)
+          \\end{aligned}`)}
         </div>
       </section>
 
@@ -250,7 +262,7 @@ export function pageTheory(): HTMLElement {
           Siguiendo el marco analítico de Pastor-Satorras & Vespignani (2001) y Newman (2002), el umbral epidémico de transmisibilidad ${renderMathInline('T_c')} para el modelo SIR en una red heterogénea está regido por los momentos de la distribución de grado:
         </p>
 
-        <div style="background: var(--bg); padding: var(--space-4); border-radius: var(--radius); margin: var(--space-4) 0; overflow-x: auto;">
+        <div class="math-block-wrap">
           ${renderMathBlock(`T_c = \\frac{\\langle k \\rangle}{\\langle k^2 \\rangle - \\langle k \\rangle}`)}
         </div>
 
@@ -258,7 +270,7 @@ export function pageTheory(): HTMLElement {
           En redes de escala libre (Barabási–Albert con ${renderMathInline('P(k) \\sim k^{-\\gamma}')} y ${renderMathInline('\\gamma \\le 3')}), el segundo momento ${renderMathInline('\\langle k^2 \\rangle \\to \\infty')} cuando ${renderMathInline('N \\to \\infty')}, lo que conduce al resultado paradigmático:
         </p>
 
-        <div style="background: var(--bg); padding: var(--space-3); border-radius: var(--radius); margin: var(--space-4) 0; overflow-x: auto;">
+        <div class="math-block-wrap">
           ${renderMathBlock(`\\lim_{N \\to \\infty} T_c = 0`)}
         </div>
 
@@ -336,7 +348,7 @@ export function pageTheory(): HTMLElement {
           </p>
           ${
             e.formula
-              ? `<div style="background: var(--bg); padding: var(--space-2); border-radius: 4px; overflow-x: auto; max-width: 100%; box-sizing: border-box;">
+              ? `<div class="math-block-wrap" style="margin: var(--space-2) 0; padding: var(--space-2) var(--space-3);">
                   ${renderMathBlock(e.formula)}
                 </div>`
               : ''

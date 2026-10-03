@@ -162,8 +162,24 @@ export function pageSimulator(): HTMLElement {
           finalAttackRate: analysis.finalSize.attackRate,
         })
 
-        // 4. Tabla accesible de datos
-        dataTable.update(series, analysis.r0, state.params.N)
+        // 4. Tabla accesible de datos y exportación a Excel/CSV
+        dataTable.update(series, analysis.r0, state.params.N, {
+          model: state.model.toUpperCase(),
+          solver: state.solver.toUpperCase(),
+          beta: state.params.beta,
+          gamma: state.params.gamma,
+          sigma: state.params.sigma,
+          nu: state.params.nu,
+          i0: state.params.i0,
+          dt: state.dt,
+          tMax: state.tMax,
+          r0: analysis.r0,
+          peakI: events?.peakI ?? analysis.analyticalPeak.iMax,
+          peakTime: events?.peakTime ?? -1,
+          criticalCoverage: analysis.criticalCoverage,
+          sInfinity: analysis.finalSize.sInfinity,
+          finalAttackRate: analysis.finalSize.attackRate,
+        })
       }
     } finally {
       isSimulating = false

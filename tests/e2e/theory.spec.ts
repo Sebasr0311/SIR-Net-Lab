@@ -46,6 +46,48 @@ test.describe('Teoría, Inicio y Acerca de (F8)', () => {
     await expect(glossaryCards.first()).toContainText('latencia')
   })
 
+  test('las fórmulas y demostraciones matemáticas se renderizan completas y sin recortar', async ({
+    page,
+  }) => {
+    await page.goto('./#/theory')
+
+    // 1. Todas las secciones de teoría están presentes y visibles
+    const sections = [
+      '#sec-sir-base',
+      '#sec-integral-primera',
+      '#sec-r0-estabilidad',
+      '#sec-pico-maximo',
+      '#sec-tamano-final',
+      '#sec-seir-impulsos',
+      '#sec-redes-heterogeneas',
+      '#sec-glosario',
+    ]
+    for (const sec of sections) {
+      await expect(page.locator(sec)).toBeVisible()
+    }
+
+    // 2. Ninguna fórmula presenta errores de sintaxis TeX (cero fallbacks)
+    const fallbacks = await page.locator('.math-fallback').count()
+    expect(fallbacks).toBe(0)
+
+    // 3. Existen múltiples bloques de fórmulas KaTeX renderizadas
+    const displayMath = page.locator('.katex-display')
+    const count = await displayMath.count()
+    expect(count).toBeGreaterThanOrEqual(15)
+
+    // 4. Cada bloque tiene dimensiones normales y no está colapsado
+    for (let i = 0; i < count; i++) {
+      const el = displayMath.nth(i)
+      await expect(el).toBeVisible()
+      const box = await el.boundingBox()
+      expect(box).not.toBeNull()
+      if (box) {
+        expect(box.height).toBeGreaterThanOrEqual(20)
+        expect(box.width).toBeGreaterThanOrEqual(30)
+      }
+    }
+  })
+
   test('la página Acerca de muestra el contexto académico, stack y referencias bibliográficas', async ({
     page,
   }) => {

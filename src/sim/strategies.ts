@@ -46,6 +46,7 @@ export interface EvaluateStrategiesOptions {
   tMax?: number
   dt?: number
   strategies?: ImmunizationStrategy[]
+  topologyName?: string
 }
 
 export interface StrategyEvaluationReport {
@@ -53,6 +54,7 @@ export interface StrategyEvaluationReport {
   budget: number
   budgetFraction: number
   summary: string
+  topology?: string
 }
 
 /**
@@ -327,5 +329,6 @@ export function evaluateStrategies(opts: EvaluateStrategiesOptions): StrategyEva
     budget: actualBudget,
     budgetFraction: actualFraction,
     summary,
+    topology: opts.topologyName,
   }
 }

@@ -5,6 +5,11 @@
  */
 
 import type { StrategyEvaluationReport, StrategyResult } from '../../sim/strategies.ts'
+import {
+  buildStrategyExcelSpreadsheetXml,
+  triggerExcelDownload,
+  triggerCsvDownload,
+} from '../exportExcel.ts'
 
 export interface StrategyTableHandle {
   el: HTMLElement
@@ -26,9 +31,14 @@ export function createStrategyTable(): StrategyTableHandle {
         Comparación de impacto sobre la población susceptible
       </p>
     </div>
-    <button class="btn btn--ghost btn-export-csv" type="button" aria-label="Descargar tabla comparativa en formato CSV">
-      📥 Exportar CSV
-    </button>
+    <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+      <button class="btn btn--secondary btn-export-excel" type="button" aria-label="Descargar tabla comparativa en formato Excel">
+        📊 Exportar Excel (.xls)
+      </button>
+      <button class="btn btn--ghost btn-export-csv" type="button" aria-label="Descargar tabla comparativa en formato CSV">
+        📥 Exportar CSV
+      </button>
+    </div>
   `
 
   const tableWrap = document.createElement('div')
@@ -68,45 +78,34 @@ export function createStrategyTable(): StrategyTableHandle {
   container.appendChild(tableWrap)
 
   const tbody = table.querySelector<HTMLTableSectionElement>('.strategy-table-body')
-  const btnExport = header.querySelector<HTMLButtonElement>('.btn-export-csv')
+  const btnExportExcel = header.querySelector<HTMLButtonElement>('.btn-export-excel')
+  const btnExportCsv = header.querySelector<HTMLButtonElement>('.btn-export-csv')
 
   let currentReport: StrategyEvaluationReport | null = null
 
-  btnExport?.addEventListener('click', () => {
+  btnExportExcel?.addEventListener('click', () => {
+    if (!currentReport) return
+    const xml = buildStrategyExcelSpreadsheetXml(currentReport)
+    triggerExcelDownload(xml, 'estrategias-inmunizacion.xls')
+  })
+
+  btnExportCsv?.addEventListener('click', () => {
     if (!currentReport) return
     const rows = [
-      [
-        'Estrategia',
-        'Inmunizados',
-        'Pico (I_max)',
-        'Dia de pico',
-        'Brote total',
-        'Tasa ataque (%)',
-        'Reduccion (%)',
-      ],
+      '\uFEFF# SIR-Net Lab — Evaluación de Estrategias de Inmunización',
+      `# Fecha: ${new Date().toISOString()}`,
+      `# Topologia: ${currentReport.topology ?? 'Red Compleja'}`,
+      'Estrategia,Inmunizados,Pico_I_max,Dia_pico,Brote_total,Tasa_ataque_pct,Reduccion_pct',
     ]
 
     const list: StrategyResult[] = Object.values(currentReport.results)
     list.forEach((r) => {
-      rows.push([
-        r.name,
-        r.immunizedCount.toString(),
-        Math.round(r.peakI).toString(),
-        r.peakTime.toFixed(1),
-        r.outbreakInfected.toString(),
-        (r.attackRate * 100).toFixed(1) + '%',
-        r.reductionPercent.toFixed(1) + '%',
-      ])
+      rows.push(
+        `"${r.name}",${r.immunizedCount},${r.peakI.toFixed(1)},${r.peakTime.toFixed(1)},${r.outbreakInfected},${(r.attackRate * 100).toFixed(1)}%,${r.reductionPercent.toFixed(1)}%`
+      )
     })
 
-    const csvContent = 'data:text/csv;charset=utf-8,' + rows.map((e) => e.join(',')).join('\n')
-    const encodedUri = encodeURI(csvContent)
-    const link = document.createElement('a')
-    link.setAttribute('href', encodedUri)
-    link.setAttribute('download', 'estrategias-inmunizacion.csv')
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
+    triggerCsvDownload(rows.join('\r\n'), 'estrategias-inmunizacion.csv')
   })
 
   function update(report: StrategyEvaluationReport): void {

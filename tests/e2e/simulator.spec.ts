@@ -50,6 +50,30 @@ test.describe('Simulador EDO (F3)', () => {
     await expect(rows.first()).toBeVisible()
   })
 
+  test('los botones de exportación a Excel (.xls) y CSV funcionan correctamente', async ({
+    page,
+  }) => {
+    await page.goto('./#/simulator')
+
+    const btnExcel = page.locator('.btn-download-excel')
+    const btnCsv = page.locator('.btn-download-csv')
+
+    await expect(btnExcel).toBeVisible()
+    await expect(btnCsv).toBeVisible()
+
+    // Comprobar evento de descarga de Excel
+    const downloadPromiseExcel = page.waitForEvent('download')
+    await btnExcel.click()
+    const downloadExcel = await downloadPromiseExcel
+    expect(downloadExcel.suggestedFilename()).toBe('sir-net-lab-simulacion.xls')
+
+    // Comprobar evento de descarga de CSV
+    const downloadPromiseCsv = page.waitForEvent('download')
+    await btnCsv.click()
+    const downloadCsv = await downloadPromiseCsv
+    expect(downloadCsv.suggestedFilename()).toBe('sir-net-lab-series.csv')
+  })
+
   test('la página del simulador no presenta violaciones críticas ni serias de accesibilidad', async ({
     page,
   }) => {

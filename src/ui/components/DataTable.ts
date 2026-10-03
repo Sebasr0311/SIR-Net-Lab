@@ -5,10 +5,17 @@
  */
 
 import type { TimeChartSeries } from './TimeChart.ts'
+import {
+  buildExcelSpreadsheetXml,
+  buildStructuredCsv,
+  triggerExcelDownload,
+  triggerCsvDownload,
+  type SimulationExportMeta,
+} from '../exportExcel.ts'
 
 export interface DataTableHandle {
   el: HTMLElement
-  update: (series: TimeChartSeries, r0: number, N: number) => void
+  update: (series: TimeChartSeries, r0: number, N: number, meta?: SimulationExportMeta) => void
 }
 
 export function createDataTable(): DataTableHandle {
@@ -26,7 +33,10 @@ export function createDataTable(): DataTableHandle {
         <button class="btn btn--ghost btn-toggle-table" type="button" aria-expanded="false">
           👁 Ver tabla de datos
         </button>
-        <button class="btn btn--secondary btn-download-csv" type="button">
+        <button class="btn btn--secondary btn-download-excel" type="button" title="Descargar reporte con plantilla completa para Microsoft Excel">
+          📊 Descargar Excel (.xls)
+        </button>
+        <button class="btn btn--ghost btn-download-csv" type="button" title="Descargar datos en formato CSV con metadatos UTF-8">
           📥 Descargar CSV
         </button>
       </div>
@@ -54,6 +64,7 @@ export function createDataTable(): DataTableHandle {
   `
 
   const btnToggle = container.querySelector<HTMLButtonElement>('.btn-toggle-table')
+  const btnExcel = container.querySelector<HTMLButtonElement>('.btn-download-excel')
   const btnCsv = container.querySelector<HTMLButtonElement>('.btn-download-csv')
   const tableWrap = container.querySelector<HTMLElement>('.data-table-wrap')
   const tbody = container.querySelector<HTMLTableSectionElement>('.table-body')
@@ -62,6 +73,7 @@ export function createDataTable(): DataTableHandle {
   let currentSeries: TimeChartSeries | null = null
   let currentR0 = 3
   let currentN = 1000
+  let currentMeta: SimulationExportMeta | undefined = undefined
 
   if (btnToggle && tableWrap) {
     btnToggle.addEventListener('click', () => {
@@ -72,42 +84,32 @@ export function createDataTable(): DataTableHandle {
     })
   }
 
-  if (btnCsv) {
-    btnCsv.addEventListener('click', () => {
+  if (btnExcel) {
+    btnExcel.addEventListener('click', () => {
       if (!currentSeries || currentSeries.t.length === 0) return
-
-      const headers = currentSeries.E ? 't (dias),S,E,I,R,R_ef\n' : 't (dias),S,I,R,R_ef\n'
-
-      const rows = currentSeries.t.map((t, idx) => {
-        const sVal = (currentSeries?.S[idx] ?? 0).toFixed(2)
-        const iVal = (currentSeries?.I[idx] ?? 0).toFixed(2)
-        const rVal = (currentSeries?.R[idx] ?? 0).toFixed(2)
-        const rEff = ((currentR0 * (currentSeries?.S[idx] ?? 0)) / currentN).toFixed(3)
-
-        if (currentSeries?.E) {
-          const eVal = (currentSeries.E[idx] ?? 0).toFixed(2)
-          return `${t.toFixed(2)},${sVal},${eVal},${iVal},${rVal},${rEff}`
-        }
-        return `${t.toFixed(2)},${sVal},${iVal},${rVal},${rEff}`
-      })
-
-      const csvContent = headers + rows.join('\n')
-      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' })
-      const url = URL.createObjectURL(blob)
-      const link = document.createElement('a')
-      link.href = url
-      link.setAttribute('download', 'sir-net-lab-series.csv')
-      document.body.appendChild(link)
-      link.click()
-      link.remove()
-      URL.revokeObjectURL(url)
+      const xml = buildExcelSpreadsheetXml(currentSeries, currentR0, currentN, currentMeta)
+      triggerExcelDownload(xml, 'sir-net-lab-simulacion.xls')
     })
   }
 
-  function update(series: TimeChartSeries, r0: number, N: number): void {
+  if (btnCsv) {
+    btnCsv.addEventListener('click', () => {
+      if (!currentSeries || currentSeries.t.length === 0) return
+      const csv = buildStructuredCsv(currentSeries, currentR0, currentN, currentMeta)
+      triggerCsvDownload(csv, 'sir-net-lab-series.csv')
+    })
+  }
+
+  function update(
+    series: TimeChartSeries,
+    r0: number,
+    N: number,
+    meta?: SimulationExportMeta
+  ): void {
     currentSeries = series
     currentR0 = r0
     currentN = N
+    currentMeta = meta
 
     if (!tbody) return
     tbody.innerHTML = ''

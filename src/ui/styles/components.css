@@ -95,6 +95,37 @@
   filter: none;
 }
 
+/* ----- Botones de pestañas (Tabs) ----- */
+.btn-tab {
+  transition: none !important;
+  font-weight: 500;
+  border-radius: var(--radius);
+}
+
+.btn-tab[aria-selected='true'],
+.btn-tab:not(.btn--ghost) {
+  background: var(--primary) !important;
+  color: var(--primary-fg) !important;
+  border: 1px solid var(--primary) !important;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-tab[aria-selected='false'],
+.btn-tab.btn--ghost {
+  background: var(--surface) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: none;
+  font-weight: 500;
+}
+
+.btn-tab[aria-selected='false']:hover,
+.btn-tab.btn--ghost:hover {
+  background: var(--secondary) !important;
+  color: var(--ink) !important;
+}
+
 /* ----- Badge R₀ (semáforo) ----- */
 .badge-r0 {
   display: inline-flex;
@@ -660,12 +691,52 @@ textarea:focus-visible {
 }
 
 /* =========================================================
-   KaTeX display math responsive scrolling
+   KaTeX display math y bloques de fórmulas
    ========================================================= */
 .katex-display {
   overflow-x: auto !important;
-  overflow-y: hidden !important;
+  overflow-y: visible !important;
   max-width: 100% !important;
   -webkit-overflow-scrolling: touch;
-  padding: 4px 0;
+  padding: 10px 4px !important;
+  margin: 0.4em 0 !important;
+}
+
+.katex-display > .katex {
+  max-width: 100%;
+  text-align: center;
+}
+
+/* Contenedor estilizado para bloques de demostraciones matemáticas */
+.math-block-wrap {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  margin: var(--space-4) 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+
+.math-block-wrap::-webkit-scrollbar {
+  height: 6px;
+}
+
+.math-block-wrap::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 999px;
+}
+
+.math-block-wrap::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media (max-width: 640px) {
+  .math-block-wrap {
+    padding: var(--space-3) var(--space-2);
+  }
 }
