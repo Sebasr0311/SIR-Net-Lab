@@ -64,7 +64,14 @@ export function createAppHeader(): HTMLElement {
         </ul>
       </nav>
 
-      <div class="header-actions">
+        <button
+          class="btn btn--ghost header-presentation-btn"
+          id="presentation-toggle"
+          aria-label="Activar modo presentación"
+          title="Modo Presentación (Tecla F)"
+          type="button"
+        >🖥️</button>
+
         <button
           class="btn btn--ghost header-theme-btn"
           id="theme-toggle"
@@ -187,6 +194,60 @@ export function createAppHeader(): HTMLElement {
       updateThemeButton(themeBtn)
     })
   }
+
+  // Modo Presentación (T9.4)
+  const presentationBtn = header.querySelector<HTMLButtonElement>('#presentation-toggle')
+  let exitBanner = document.getElementById('exit-presentation')
+  if (!exitBanner) {
+    exitBanner = document.createElement('button')
+    exitBanner.id = 'exit-presentation'
+    exitBanner.className = 'exit-presentation-banner'
+    exitBanner.setAttribute('aria-label', 'Salir de modo presentación')
+    exitBanner.innerHTML = '<span>✕</span> <span>Salir de modo presentación (Esc)</span>'
+    document.body.appendChild(exitBanner)
+  }
+
+  function setPresentationMode(enable: boolean): void {
+    document.documentElement.dataset.presentation = enable ? 'true' : 'false'
+    presentationBtn?.setAttribute(
+      'aria-label',
+      enable ? 'Salir de modo presentación' : 'Activar modo presentación'
+    )
+    if (enable) {
+      if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen().catch(() => {})
+      }
+    } else {
+      if (document.fullscreenElement && document.exitFullscreen) {
+        document.exitFullscreen().catch(() => {})
+      }
+    }
+  }
+
+  presentationBtn?.addEventListener('click', () => {
+    const isCurrent = document.documentElement.dataset.presentation === 'true'
+    setPresentationMode(!isCurrent)
+  })
+
+  exitBanner.addEventListener('click', () => {
+    setPresentationMode(false)
+  })
+
+  document.addEventListener('keydown', (e) => {
+    const activeTag = document.activeElement?.tagName.toLowerCase()
+    if (
+      e.key.toLowerCase() === 'f' &&
+      !['input', 'textarea', 'select'].includes(activeTag ?? '') &&
+      !e.ctrlKey &&
+      !e.altKey &&
+      !e.metaKey
+    ) {
+      const isCurrent = document.documentElement.dataset.presentation === 'true'
+      setPresentationMode(!isCurrent)
+    } else if (e.key === 'Escape' && document.documentElement.dataset.presentation === 'true') {
+      setPresentationMode(false)
+    }
+  })
 
   // Menú hamburguesa
   const menuToggle = header.querySelector<HTMLButtonElement>('#menu-toggle')

@@ -62,7 +62,17 @@
     font-family: Georgia, serif;
   }
 
-  a[href]::after {
+  .btn-export-png,
+  .exit-presentation-banner,
+  button {
+    display: none !important;
+  }
+
+  a[href^='#']::after {
+    content: none !important;
+  }
+
+  a[href^='http']::after {
     content: ' (' attr(href) ')';
     font-size: 0.85em;
     color: #555;
