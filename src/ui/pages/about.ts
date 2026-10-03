@@ -50,7 +50,7 @@ export function pageAbout(): HTMLElement {
         <p style="line-height: 1.7; font-size: var(--step--1); color: var(--ink-2);">
           Diseñado bajo los más estrictos estándares de ingeniería de software, accesibilidad web y alto rendimiento computacional (ADR-001):
         </p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-3); margin-top: var(--space-3);">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: var(--space-3); margin-top: var(--space-3);">
           <div style="background: var(--bg); padding: var(--space-3); border-radius: 6px;">
             <strong style="color: var(--accent);">Vite + TypeScript Estricto</strong>
             <p style="font-size: var(--step--1); color: var(--ink-2); margin: 4px 0 0 0;">Cero dependencias pesadas de UI, sin framework. Código tipado y compilado sin <code>any</code>.</p>
@@ -115,6 +115,19 @@ export function pageAbout(): HTMLElement {
 
     </div>
   `
+
+  const style = document.createElement('style')
+  style.textContent = `
+    @media (max-width: 640px) {
+      .about-layout {
+        padding: var(--space-4) var(--space-3) !important;
+      }
+      .about-header h1 {
+        font-size: var(--step-2) !important;
+      }
+    }
+  `
+  page.appendChild(style)
 
   return page
 }

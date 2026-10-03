@@ -32,25 +32,26 @@ export function createStrategyTable(): StrategyTableHandle {
   `
 
   const tableWrap = document.createElement('div')
-  tableWrap.className = 'table-responsive'
-  tableWrap.style.cssText = 'overflow-x: auto; width: 100%;'
+  tableWrap.className = 'table-responsive table-container'
+  tableWrap.style.cssText =
+    'overflow-x: auto; width: 100%; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface);'
 
   const table = document.createElement('table')
   table.style.cssText =
-    'width: 100%; border-collapse: collapse; font-size: var(--step--1); text-align: left;'
+    'width: 100%; border-collapse: separate; border-spacing: 0; font-size: var(--step--1); text-align: left;'
   table.innerHTML = `
     <caption class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;">
       Resumen de métricas de inmunización: pico, infecciones y reducción porcentual
     </caption>
     <thead>
-      <tr style="border-bottom: 2px solid var(--line); background: var(--bg);">
-        <th scope="col" style="padding: 10px 12px; color: var(--ink);">Estrategia</th>
-        <th scope="col" style="padding: 10px 12px; color: var(--ink); text-align: right;">Inmunizados</th>
-        <th scope="col" style="padding: 10px 12px; color: var(--ink); text-align: right;">Pico (I_max)</th>
-        <th scope="col" style="padding: 10px 12px; color: var(--ink); text-align: right;">Día de pico</th>
-        <th scope="col" style="padding: 10px 12px; color: var(--ink); text-align: right;">Brote total</th>
-        <th scope="col" style="padding: 10px 12px; color: var(--ink); text-align: right;">Tasa de ataque</th>
-        <th scope="col" style="padding: 10px 12px; color: var(--ink); text-align: right;">Reducción</th>
+      <tr style="border-bottom: 1px solid var(--line); background: var(--bg);">
+        <th scope="col" style="padding: 10px 14px; color: var(--ink); white-space: nowrap; border-bottom: 1px solid var(--line);">Estrategia</th>
+        <th scope="col" style="padding: 10px 14px; color: var(--ink); text-align: right; white-space: nowrap; border-bottom: 1px solid var(--line);">Inmunizados</th>
+        <th scope="col" style="padding: 10px 14px; color: var(--ink); text-align: right; white-space: nowrap; border-bottom: 1px solid var(--line);">Pico (I_max)</th>
+        <th scope="col" style="padding: 10px 14px; color: var(--ink); text-align: right; white-space: nowrap; border-bottom: 1px solid var(--line);">Día de pico</th>
+        <th scope="col" style="padding: 10px 14px; color: var(--ink); text-align: right; white-space: nowrap; border-bottom: 1px solid var(--line);">Brote total</th>
+        <th scope="col" style="padding: 10px 14px; color: var(--ink); text-align: right; white-space: nowrap; border-bottom: 1px solid var(--line);">Tasa de ataque</th>
+        <th scope="col" style="padding: 10px 14px; color: var(--ink); text-align: right; white-space: nowrap; border-bottom: 1px solid var(--line);">Reducción</th>
       </tr>
     </thead>
     <tbody class="strategy-table-body">
@@ -131,16 +132,16 @@ export function createStrategyTable(): StrategyTableHandle {
               : 'var(--ink-2)'
 
       tr.innerHTML = `
-        <th scope="row" style="padding: 10px 12px; font-weight: 600; color: var(--ink);">
+        <th scope="row" style="padding: 10px 14px; font-weight: 600; color: var(--ink); white-space: nowrap; border-bottom: 1px solid var(--line);">
           <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: ${badgeColor}; margin-right: 6px;"></span>
           ${r.name}
         </th>
-        <td style="padding: 10px 12px; text-align: right; font-family: var(--font-mono);">${r.immunizedCount}</td>
-        <td style="padding: 10px 12px; text-align: right; font-family: var(--font-mono); font-weight: bold;">${Math.round(r.peakI)}</td>
-        <td style="padding: 10px 12px; text-align: right; font-family: var(--font-mono);">${r.peakTime.toFixed(1)} d</td>
-        <td style="padding: 10px 12px; text-align: right; font-family: var(--font-mono);">${r.outbreakInfected}</td>
-        <td style="padding: 10px 12px; text-align: right; font-family: var(--font-mono);">${(r.attackRate * 100).toFixed(1)}%</td>
-        <td style="padding: 10px 12px; text-align: right; font-family: var(--font-mono); font-weight: bold; color: ${r.reductionPercent > 50 ? 'var(--ok)' : 'var(--ink)'};">
+        <td style="padding: 10px 14px; text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; border-bottom: 1px solid var(--line);">${r.immunizedCount}</td>
+        <td style="padding: 10px 14px; text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-weight: bold; white-space: nowrap; border-bottom: 1px solid var(--line);">${Math.round(r.peakI)}</td>
+        <td style="padding: 10px 14px; text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; border-bottom: 1px solid var(--line);">${r.peakTime.toFixed(1)} d</td>
+        <td style="padding: 10px 14px; text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; border-bottom: 1px solid var(--line);">${r.outbreakInfected}</td>
+        <td style="padding: 10px 14px; text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; border-bottom: 1px solid var(--line);">${(r.attackRate * 100).toFixed(1)}%</td>
+        <td style="padding: 10px 14px; text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-weight: bold; white-space: nowrap; border-bottom: 1px solid var(--line); color: ${r.reductionPercent > 50 ? 'var(--ok)' : 'var(--ink)'};">
           ${r.strategy === 'none' ? '—' : `-${r.reductionPercent.toFixed(1)}%`}
         </td>
       `

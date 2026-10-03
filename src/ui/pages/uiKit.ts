@@ -261,6 +261,43 @@ export function pageUiKit(): HTMLElement {
   ])
   addSection('Accordion', accordionEl)
 
+  // ─── Tablas Responsivas shadcn/ui ─────────────────────────────────
+  const tableDemoWrap = document.createElement('div')
+  tableDemoWrap.className = 'table-container'
+  tableDemoWrap.innerHTML = `
+    <table>
+      <thead>
+        <tr>
+          <th>Variable</th>
+          <th>Símbolo</th>
+          <th>Valor típico</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Transmisión</td>
+          <td><code>β</code></td>
+          <td>0.60 días⁻¹</td>
+          <td><span class="badge-r0" data-level="danger">Alta</span></td>
+        </tr>
+        <tr>
+          <td>Recuperación</td>
+          <td><code>γ</code></td>
+          <td>0.20 días⁻¹</td>
+          <td><span class="badge-r0" data-level="ok">Normal</span></td>
+        </tr>
+        <tr>
+          <td>Latencia</td>
+          <td><code>σ</code></td>
+          <td>0.50 días⁻¹</td>
+          <td><span class="badge-r0" data-level="warn">Moderada</span></td>
+        </tr>
+      </tbody>
+    </table>
+  `
+  addSection('Tablas Responsivas (estilo shadcn/ui)', tableDemoWrap)
+
   // ─── Botones ────────────────────────────────────────────────────
   const btnEl = document.createElement('div')
   btnEl.style.cssText = 'display: flex; gap: var(--space-4); flex-wrap: wrap; align-items: center;'

@@ -291,7 +291,7 @@ export function pageTheory(): HTMLElement {
           </div>
         </div>
 
-        <div id="glossary-cards-container" style="display: grid; grid-template-columns: 1fr; gap: var(--space-3);">
+        <div id="glossary-cards-container" style="display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-3); width: 100%; max-width: 100%;">
           <!-- Se renderiza dinámicamente -->
         </div>
       </section>
@@ -317,7 +317,7 @@ export function pageTheory(): HTMLElement {
     container.innerHTML = entries
       .map(
         (e) => `
-        <article class="card" style="padding: var(--space-4); border: 1px solid var(--line); background: var(--surface);">
+        <article class="card" style="padding: var(--space-4); border: 1px solid var(--line); background: var(--surface); min-width: 0; max-width: 100%; box-sizing: border-box;">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-2); margin-bottom: var(--space-2); flex-wrap: wrap;">
             <div>
               <span style="display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; text-transform: uppercase; font-weight: bold; background: rgba(31, 78, 121, 0.1); color: var(--accent); margin-bottom: 4px;">
@@ -336,7 +336,7 @@ export function pageTheory(): HTMLElement {
           </p>
           ${
             e.formula
-              ? `<div style="background: var(--bg); padding: var(--space-2); border-radius: 4px; overflow-x: auto;">
+              ? `<div style="background: var(--bg); padding: var(--space-2); border-radius: 4px; overflow-x: auto; max-width: 100%; box-sizing: border-box;">
                   ${renderMathBlock(e.formula)}
                 </div>`
               : ''
@@ -369,6 +369,22 @@ export function pageTheory(): HTMLElement {
 
   // Render inicial del glosario
   renderGlossaryList(GLOSSARY)
+
+  const style = document.createElement('style')
+  style.textContent = `
+    @media (max-width: 640px) {
+      .theory-layout {
+        padding: var(--space-4) var(--space-3) !important;
+      }
+      .theory-header h1 {
+        font-size: var(--step-2) !important;
+      }
+      .theory-page .card {
+        padding: var(--space-4) !important;
+      }
+    }
+  `
+  page.appendChild(style)
 
   return page
 }

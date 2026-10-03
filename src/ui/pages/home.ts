@@ -63,7 +63,7 @@ export function pageHome(): HTMLElement {
           Módulos del Laboratorio
         </h2>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-4);">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: var(--space-4);">
           
           <!-- Módulo 1 -->
           <article class="card module-card" style="padding: var(--space-4); border: 1px solid var(--line); display: flex; flex-direction: column; justify-content: space-between;">
@@ -157,7 +157,7 @@ export function pageHome(): HTMLElement {
         <h2 style="font-size: var(--step-1); margin-top: 0; margin-bottom: var(--space-3);">
           ⚡ Inicio Rápido en 3 Pasos
         </h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-4);">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: var(--space-4);">
           <div>
             <div style="font-weight: bold; font-size: var(--step-0); color: var(--accent); margin-bottom: 4px;">Paso 1: Seleccioná un escenario</div>
             <p style="font-size: var(--step--1); color: var(--ink-2); margin: 0; line-height: 1.5;">
@@ -181,6 +181,16 @@ export function pageHome(): HTMLElement {
 
     </div>
   `
+
+  const style = document.createElement('style')
+  style.textContent = `
+    @media (max-width: 640px) {
+      .home-layout {
+        padding: var(--space-4) var(--space-3) !important;
+      }
+    }
+  `
+  page.appendChild(style)
 
   return page
 }

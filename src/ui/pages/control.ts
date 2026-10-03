@@ -30,7 +30,7 @@ export function pageControl(): HTMLElement {
       </header>
 
       <!-- Pestañas de navegación de modo de control -->
-      <div class="control-tabs" role="tablist" aria-label="Modo de control" style="display: flex; gap: var(--space-2); margin-bottom: var(--space-4); border-bottom: 1px solid var(--line); padding-bottom: var(--space-2);">
+      <div class="control-tabs" role="tablist" aria-label="Modo de control" style="display: flex; gap: var(--space-2); margin-bottom: var(--space-4); border-bottom: 1px solid var(--line); padding-bottom: var(--space-2); flex-wrap: wrap;">
         <button class="btn btn-tab btn-tab-edo" role="tab" aria-selected="true" aria-controls="panel-edo" id="tab-edo" type="button" style="font-weight: 600;">
           📈 Campañas de actualización (Parches)
         </button>
@@ -41,7 +41,7 @@ export function pageControl(): HTMLElement {
 
       <!-- Panel 1: EDO por Impulsos -->
       <section id="panel-edo" role="tabpanel" aria-labelledby="tab-edo" style="display: block;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-4);">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: var(--space-4); margin-bottom: var(--space-4);">
           <!-- Panel de control de campañas EDO -->
           <div class="card" style="padding: var(--space-4);">
             <h3 style="font-size: var(--step-0); margin-bottom: var(--space-3);">Programación de campañas de parcheo</h3>
@@ -125,7 +125,7 @@ export function pageControl(): HTMLElement {
         <div class="card" style="padding: var(--space-4); margin-bottom: var(--space-4);">
           <h3 style="font-size: var(--step-0); margin-bottom: var(--space-3);">Configuración de experimento en red</h3>
           
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-3); align-items: end;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: var(--space-3); align-items: end;">
             <div>
               <label for="select-topology" style="font-size: var(--step--1); display: block; margin-bottom: 4px; font-weight: 600;">
                 Topología:
@@ -352,6 +352,23 @@ export function pageControl(): HTMLElement {
   }
 
   btnRunStrategies?.addEventListener('click', runNetworkEvaluation)
+
+  const style = document.createElement('style')
+  style.textContent = `
+    @media (max-width: 640px) {
+      .control-layout {
+        padding: var(--space-4) var(--space-3) !important;
+      }
+      .control-tabs {
+        flex-direction: column;
+      }
+      .control-tabs .btn-tab {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  `
+  page.appendChild(style)
 
   return page
 }

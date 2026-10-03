@@ -22,28 +22,28 @@ export function createDataTable(): DataTableHandle {
         <h2 style="font-size: var(--step-1);">Datos de la simulación</h2>
         <p class="text-muted" style="font-size: var(--step--1); color: var(--ink-2);">Tabla accesible y exportación de datos crudos</p>
       </div>
-      <div style="display: flex; gap: var(--space-2);">
+      <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
         <button class="btn btn--ghost btn-toggle-table" type="button" aria-expanded="false">
           👁 Ver tabla de datos
         </button>
-        <button class="btn btn-download-csv" type="button">
+        <button class="btn btn--secondary btn-download-csv" type="button">
           📥 Descargar CSV
         </button>
       </div>
     </div>
-    <div class="data-table-wrap" style="display: none; overflow-x: auto; max-height: 320px; border: 1px solid var(--line); border-radius: 6px;">
-      <table class="accessible-table" style="width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: var(--step--1);">
-        <caption style="text-align: left; padding: var(--space-2); font-weight: bold; font-family: var(--font-ui);">
+    <div class="data-table-wrap table-responsive" style="display: none; overflow-x: auto; max-height: 360px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface);">
+      <table class="accessible-table" style="width: 100%; border-collapse: separate; border-spacing: 0; font-family: var(--font-mono); font-size: var(--step--1);">
+        <caption style="text-align: left; padding: 10px 14px; font-weight: 600; font-family: var(--font-ui); color: var(--ink-2); border-bottom: 1px solid var(--line);">
           Valores calculados de la población por compartimento en función del tiempo
         </caption>
         <thead>
-          <tr style="background: var(--line); text-align: right;">
-            <th scope="col" style="padding: var(--space-2); text-align: left;">t (días)</th>
-            <th scope="col" style="padding: var(--space-2); color: var(--S);">S</th>
-            <th scope="col" style="padding: var(--space-2); color: var(--E);" class="col-e">E</th>
-            <th scope="col" style="padding: var(--space-2); color: var(--I);">I</th>
-            <th scope="col" style="padding: var(--space-2); color: var(--R);">R</th>
-            <th scope="col" style="padding: var(--space-2);">R_ef</th>
+          <tr style="position: sticky; top: 0; z-index: 2; background: var(--bg); text-align: right; box-shadow: 0 1px 0 var(--line);">
+            <th scope="col" style="padding: 10px 14px; text-align: left; white-space: nowrap; border-bottom: 1px solid var(--line);">t (días)</th>
+            <th scope="col" style="padding: 10px 14px; color: var(--S); white-space: nowrap; border-bottom: 1px solid var(--line);">S (Susceptibles)</th>
+            <th scope="col" style="padding: 10px 14px; color: var(--E); white-space: nowrap; border-bottom: 1px solid var(--line);" class="col-e">E (Expuestos)</th>
+            <th scope="col" style="padding: 10px 14px; color: var(--I); white-space: nowrap; border-bottom: 1px solid var(--line);">I (Infectados)</th>
+            <th scope="col" style="padding: 10px 14px; color: var(--R); white-space: nowrap; border-bottom: 1px solid var(--line);">R (Recuperados)</th>
+            <th scope="col" style="padding: 10px 14px; white-space: nowrap; border-bottom: 1px solid var(--line);">R_ef</th>
           </tr>
         </thead>
         <tbody class="table-body">
@@ -128,20 +128,20 @@ export function createDataTable(): DataTableHandle {
       const rEff = ((r0 * sVal) / N).toFixed(2)
 
       const tr = document.createElement('tr')
-      tr.style.borderBottom = '1px solid var(--line)'
+      tr.style.cssText = 'border-bottom: 1px solid var(--line);'
 
       let html = `
-        <td style="padding: var(--space-1) var(--space-2); text-align: left;">${tVal.toFixed(1)}</td>
-        <td style="padding: var(--space-1) var(--space-2); text-align: right;">${Math.round(sVal)}</td>
+        <td style="padding: 10px 14px; text-align: left; white-space: nowrap; font-variant-numeric: tabular-nums;">${tVal.toFixed(1)}</td>
+        <td style="padding: 10px 14px; text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums;">${Math.round(sVal)}</td>
       `
       if (hasE && series.E) {
         const eVal = series.E[i] ?? 0
-        html += `<td style="padding: var(--space-1) var(--space-2); text-align: right;">${Math.round(eVal)}</td>`
+        html += `<td style="padding: 10px 14px; text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums;">${Math.round(eVal)}</td>`
       }
       html += `
-        <td style="padding: var(--space-1) var(--space-2); text-align: right;">${Math.round(iVal)}</td>
-        <td style="padding: var(--space-1) var(--space-2); text-align: right;">${Math.round(rVal)}</td>
-        <td style="padding: var(--space-1) var(--space-2); text-align: right;">${rEff}</td>
+        <td style="padding: 10px 14px; text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums;">${Math.round(iVal)}</td>
+        <td style="padding: 10px 14px; text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums;">${Math.round(rVal)}</td>
+        <td style="padding: 10px 14px; text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums;">${rEff}</td>
       `
       tr.innerHTML = html
       tbody.appendChild(tr)

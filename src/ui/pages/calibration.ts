@@ -34,7 +34,7 @@ export function pageCalibration(): HTMLElement {
       </header>
 
       <!-- Panel superior: Datos de entrada y Configuración del ajuste -->
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-4);">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: var(--space-4); margin-bottom: var(--space-4);">
         
         <!-- Tarjeta 1: Carga o Generación de Datos -->
         <div class="card" style="padding: var(--space-4);">
@@ -154,7 +154,7 @@ export function pageCalibration(): HTMLElement {
       <!-- Barra de KPIs del Ajuste -->
       <section class="card" aria-label="Resultados y métricas del ajuste" style="margin-bottom: var(--space-4); padding: var(--space-3) var(--space-4);">
         <h2 style="font-size: var(--step-0); margin-top: 0; margin-bottom: var(--space-2);">Métricas y Parámetros Estimados</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: var(--space-3); text-align: center;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr)); gap: var(--space-3); text-align: center;">
           <div style="background: var(--bg); padding: var(--space-2); border-radius: 6px;">
             <div style="font-size: var(--step--1); color: var(--ink-2);">Tasa β̂ estimada</div>
             <div id="kpi-beta" style="font-size: var(--step-1); font-weight: bold; font-family: var(--font-mono); color: var(--accent);">—</div>
@@ -468,6 +468,16 @@ export function pageCalibration(): HTMLElement {
 
   // Inicializar automáticamente con una serie sintética
   generateSynth()
+
+  const style = document.createElement('style')
+  style.textContent = `
+    @media (max-width: 640px) {
+      .calibration-layout {
+        padding: var(--space-4) var(--space-3) !important;
+      }
+    }
+  `
+  page.appendChild(style)
 
   return page
 }

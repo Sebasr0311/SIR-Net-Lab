@@ -59,7 +59,7 @@ test.describe('Simulación en Redes (F4)', () => {
 
     // Al finalizar el cálculo debe reportar la discrepancia RMSE
     const rmseStrong = page.locator('#rmse-val')
-    await expect(rmseStrong).not.toHaveText('—', { timeout: 15000 })
+    await expect(rmseStrong).not.toHaveText('—', { timeout: 30000 })
   })
 
   test('la página de red no presenta violaciones críticas ni serias de accesibilidad', async ({

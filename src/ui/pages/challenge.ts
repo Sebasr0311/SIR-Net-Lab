@@ -89,7 +89,7 @@ export function pageChallenge(): HTMLElement {
           <label style="font-weight: 600; font-size: var(--step--1); display: block; margin-bottom: 6px;">
             Nivel de escenario y topología:
           </label>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-3);">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: var(--space-3);">
             <label class="card-radio" style="display: flex; align-items: center; gap: 8px; padding: 12px; border: 1px solid var(--line); border-radius: 6px; cursor: pointer; background: var(--surface);">
               <input type="radio" name="difficulty" value="level1" />
               <div>
@@ -119,7 +119,7 @@ export function pageChallenge(): HTMLElement {
         <!-- Catálogo de Acciones Tácticas -->
         <div style="margin-bottom: var(--space-4);">
           <h3 style="font-size: var(--step-0); margin-bottom: var(--space-2);">Medidas de defensa disponibles</h3>
-          <div id="actions-catalog" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-3);"></div>
+          <div id="actions-catalog" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: var(--space-3);"></div>
         </div>
 
         <!-- Botón de ejecución -->
@@ -136,7 +136,7 @@ export function pageChallenge(): HTMLElement {
           <p id="res-subtitle" style="font-size: var(--step-0); color: var(--ink-2); margin: 0;"></p>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-6);">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: var(--space-4); margin-bottom: var(--space-6);">
           <div class="card" style="text-align: center; padding: var(--space-3); background: var(--bg);">
             <div style="font-size: var(--step--1); color: var(--ink-2);">Puntuación Final</div>
             <div id="res-score" style="font-size: var(--step-3); font-weight: bold; font-family: var(--font-mono); color: var(--accent);">0</div>
@@ -368,6 +368,16 @@ export function pageChallenge(): HTMLElement {
     if (resultsCard) resultsCard.style.display = 'none'
     if (setupCard) setupCard.style.display = 'block'
   })
+
+  const style = document.createElement('style')
+  style.textContent = `
+    @media (max-width: 640px) {
+      .challenge-layout {
+        padding: var(--space-4) var(--space-3) !important;
+      }
+    }
+  `
+  page.appendChild(style)
 
   return page
 }

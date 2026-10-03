@@ -9,9 +9,18 @@
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
   padding: var(--space-6);
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
   transition:
     border-color 0.15s ease,
     box-shadow 0.15s ease;
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: var(--space-4);
+  }
 }
 
 /* ----- Botón base (estilo shadcn/ui) ----- */
@@ -144,25 +153,41 @@
   display: flex;
   align-items: center;
   gap: var(--space-2);
+  min-width: 0;
 }
 
 .slider-field__range {
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 50px;
   accent-color: var(--accent);
   height: 6px;
   cursor: pointer;
 }
 
 .slider-field__number {
-  width: 72px;
+  flex: 0 0 68px;
+  width: 68px;
+  min-width: 52px;
   font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
   font-size: var(--step--1);
   text-align: center;
   border: 1px solid var(--line);
   border-radius: 6px;
-  padding: var(--space-1) var(--space-2);
+  padding: 6px 4px;
   background: var(--surface);
   color: var(--ink);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.slider-field__number:focus-visible {
+  border-color: var(--accent);
+  box-shadow:
+    0 0 0 2px var(--surface),
+    0 0 0 4px var(--ring);
+  outline: none;
 }
 
 .slider-field__number[aria-invalid='true'] {
@@ -172,20 +197,26 @@
 }
 
 .slider-field__step-btn {
+  flex: 0 0 38px;
   font-family: var(--font-ui);
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
   border: 1px solid var(--line);
   border-radius: 6px;
-  min-height: 44px;
-  min-width: 44px;
+  min-height: 38px;
+  min-width: 38px;
+  width: 38px;
+  height: 38px;
   background: var(--surface);
   color: var(--ink);
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.1s;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+  user-select: none;
 }
 
 .slider-field__step-btn:hover {
@@ -253,7 +284,7 @@
   left: 50%;
   translate: -50% 0;
   z-index: 100;
-  max-width: 220px;
+  max-width: min(220px, 80vw);
   width: max-content;
   padding: var(--space-2) var(--space-3);
   background: var(--ink);
@@ -262,7 +293,10 @@
   border-radius: 6px;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.15s ease;
+  visibility: hidden;
+  transition:
+    opacity 0.15s ease,
+    visibility 0.15s ease;
   white-space: pre-wrap;
   word-break: break-word;
 }
@@ -270,6 +304,15 @@
 .tooltip-wrap:hover .tooltip-wrap__bubble,
 .tooltip-wrap:focus-within .tooltip-wrap__bubble {
   opacity: 1;
+  visibility: visible;
+}
+
+@media (max-width: 480px) {
+  .tooltip-wrap__bubble {
+    left: auto;
+    right: 0;
+    translate: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -367,6 +410,207 @@
 }
 
 /* =========================================================
+   Tablas Responsivas (estilo shadcn/ui)
+   ========================================================= */
+.table-container,
+.table-responsive,
+.data-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+
+.table-container::-webkit-scrollbar,
+.table-responsive::-webkit-scrollbar,
+.data-table-wrap::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.table-container::-webkit-scrollbar-track,
+.table-responsive::-webkit-scrollbar-track,
+.data-table-wrap::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.table-container::-webkit-scrollbar-thumb,
+.table-responsive::-webkit-scrollbar-thumb,
+.data-table-wrap::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 999px;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: var(--step--1);
+  text-align: left;
+}
+
+caption {
+  caption-side: top;
+  text-align: left;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--step--1);
+  color: var(--ink-2);
+}
+
+th {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  background: var(--bg);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  vertical-align: middle;
+  font-variant-numeric: tabular-nums;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr {
+  transition: background 0.12s ease;
+}
+
+tbody tr:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+[data-theme='dark'] tbody tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* =========================================================
+   Formularios e Inputs (estilo shadcn/ui)
+   ========================================================= */
+input[type='text'],
+input[type='number'],
+input[type='search'],
+select,
+textarea {
+  font-family: var(--font-ui);
+  font-size: var(--step--1);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--ink);
+  padding: 8px 12px;
+  outline: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+  max-width: 100%;
+}
+
+input[type='text']:focus-visible,
+input[type='number']:focus-visible,
+input[type='search']:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  border-color: var(--accent);
+  box-shadow:
+    0 0 0 2px var(--surface),
+    0 0 0 4px var(--ring);
+}
+
+/* ----- Radio Cards (estilo shadcn/ui) ----- */
+.card-radio {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  cursor: pointer;
+  background: var(--surface);
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+  user-select: none;
+}
+
+.card-radio:hover {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: var(--ink-2);
+}
+
+[data-theme='dark'] .card-radio:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--line);
+}
+
+.card-radio:has(input:checked) {
+  border-color: var(--accent);
+  background: rgba(31, 78, 121, 0.05);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+[data-theme='dark'] .card-radio:has(input:checked) {
+  background: rgba(108, 166, 217, 0.08);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+/* =========================================================
+   Reglas Responsivas Globales (Móvil y Tablet)
+   ========================================================= */
+@media (max-width: 768px) {
+  .card {
+    padding: var(--space-4);
+  }
+
+  .table-container,
+  .table-responsive,
+  .data-table-wrap {
+    font-size: 0.8125rem;
+  }
+
+  th,
+  td {
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slider-field__step-btn {
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    min-height: 34px;
+    font-size: 0.875rem;
+  }
+
+  .slider-field__number {
+    flex: 0 0 58px;
+    width: 58px;
+    font-size: 0.8125rem;
+    padding: 4px 2px;
+  }
+
+  .slider-field__range {
+    min-width: 45px;
+  }
+}
+
+/* =========================================================
    Modo Presentación (T9.4)
    ========================================================= */
 [data-presentation='true'] #site-header {
@@ -413,4 +657,15 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
   cursor: pointer;
   border: 1px solid var(--line);
+}
+
+/* =========================================================
+   KaTeX display math responsive scrolling
+   ========================================================= */
+.katex-display {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  max-width: 100% !important;
+  -webkit-overflow-scrolling: touch;
+  padding: 4px 0;
 }

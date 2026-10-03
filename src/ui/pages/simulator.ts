@@ -87,6 +87,18 @@ export function pageSimulator(): HTMLElement {
       .simulator-sidebar {
         position: static;
         max-height: none;
+        padding-right: 0;
+      }
+    }
+    @media (max-width: 640px) {
+      .simulator-page {
+        padding: var(--space-4) var(--space-3);
+      }
+      .simulator-layout {
+        gap: var(--space-4);
+      }
+      .simulator-main {
+        gap: var(--space-4);
       }
     }
   `

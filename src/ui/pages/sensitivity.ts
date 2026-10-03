@@ -47,7 +47,7 @@ export function pageSensitivity(): HTMLElement {
 
       <!-- Panel 1: Sensibilidad Local (Tornado) -->
       <section id="panel-tornado" role="tabpanel" aria-labelledby="tab-tornado" style="display: block;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-4);">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: var(--space-4); margin-bottom: var(--space-4);">
           
           <!-- Controles de Sensibilidad Local -->
           <div class="card" style="padding: var(--space-4);">
@@ -90,7 +90,7 @@ export function pageSensitivity(): HTMLElement {
 
       <!-- Panel 2: Barrido 2D y Bifurcación -->
       <section id="panel-sweep" role="tabpanel" aria-labelledby="tab-sweep" style="display: none;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-4);">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: var(--space-4); margin-bottom: var(--space-4);">
           
           <!-- Controles del Barrido 2D -->
           <div class="card" style="padding: var(--space-4);">
@@ -135,7 +135,7 @@ export function pageSensitivity(): HTMLElement {
 
       <!-- Panel 3: Sensibilidad Global (LHS en Worker) -->
       <section id="panel-lhs" role="tabpanel" aria-labelledby="tab-lhs" style="display: none;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-4);">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: var(--space-4); margin-bottom: var(--space-4);">
           
           <!-- Controles de LHS -->
           <div class="card" style="padding: var(--space-4);">
@@ -422,6 +422,23 @@ export function pageSensitivity(): HTMLElement {
   updateSweep()
   // Lanzar un lote inicial de LHS
   btnRunLhs.click()
+
+  const style = document.createElement('style')
+  style.textContent = `
+    @media (max-width: 640px) {
+      .sensitivity-layout {
+        padding: var(--space-4) var(--space-3) !important;
+      }
+      .sensitivity-tabs {
+        flex-direction: column;
+      }
+      .sensitivity-tabs .btn-tab {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  `
+  page.appendChild(style)
 
   return page
 }

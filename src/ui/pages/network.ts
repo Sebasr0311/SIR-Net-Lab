@@ -74,6 +74,15 @@ export function pageNetwork(): HTMLElement {
       .network-sidebar {
         position: static;
         max-height: none;
+        padding-right: 0;
+      }
+    }
+    @media (max-width: 640px) {
+      .network-page {
+        padding: var(--space-4) var(--space-3);
+      }
+      .network-layout {
+        gap: var(--space-4);
       }
     }
   `
