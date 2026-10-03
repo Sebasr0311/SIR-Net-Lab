@@ -64,6 +64,7 @@ export function createAppHeader(): HTMLElement {
         </ul>
       </nav>
 
+      <div class="header-actions">
         <button
           class="btn btn--ghost header-presentation-btn"
           id="presentation-toggle"

@@ -28,13 +28,13 @@ export function pageHome(): HTMLElement {
         </p>
 
         <div style="display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap;">
-          <a href="#/simulator" class="btn btn--primary" style="background: var(--accent); color: white; text-decoration: none; padding: 12px 24px; font-weight: bold; border-radius: 8px;">
+          <a href="#/simulator" class="btn btn--accent" style="padding: 12px 24px; font-size: var(--step-0);">
             🚀 Abrir Simulador EDO
           </a>
-          <a href="#/network" class="btn btn--ghost" style="text-decoration: none; padding: 12px 24px; font-weight: 600; border-radius: 8px;">
+          <a href="#/network" class="btn btn--ghost" style="padding: 12px 24px; font-size: var(--step-0);">
             🕸️ Simulación en Red
           </a>
-          <a href="#/challenge" class="btn btn--ghost" style="text-decoration: none; padding: 12px 24px; font-weight: 600; border-radius: 8px; border-color: var(--accent); color: var(--accent);">
+          <a href="#/challenge" class="btn btn--secondary" style="padding: 12px 24px; font-size: var(--step-0);">
             🎯 Jugar Modo Reto
           </a>
         </div>

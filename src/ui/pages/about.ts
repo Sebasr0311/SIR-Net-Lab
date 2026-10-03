@@ -108,7 +108,7 @@ export function pageAbout(): HTMLElement {
         <p style="font-size: var(--step--1); color: var(--ink-2); line-height: 1.6; max-width: 600px; margin: 0 auto var(--space-4);">
           Este proyecto es de código abierto bajo la Licencia MIT. El código fuente completo, documentación técnica y registros de cambios están disponibles en GitHub.
         </p>
-        <a href="https://github.com/Sebasr0311/SIR-Net-Lab" target="_blank" rel="noopener noreferrer" class="btn btn--primary" style="text-decoration: none; padding: 10px 20px; font-weight: bold; background: var(--ink); color: white; border-radius: 6px;">
+        <a href="https://github.com/Sebasr0311/SIR-Net-Lab" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
           ⭐ Ver en GitHub (Sebasr0311/SIR-Net-Lab)
         </a>
       </section>

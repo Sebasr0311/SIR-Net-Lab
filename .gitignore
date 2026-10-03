@@ -30,3 +30,5 @@ test-results
 
 # OS
 Thumbs.db
+testsprite_tests/tmp/
+testsprite_tests/tmp/config.json

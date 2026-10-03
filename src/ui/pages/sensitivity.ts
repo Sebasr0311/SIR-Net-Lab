@@ -159,7 +159,7 @@ export function pageSensitivity(): HTMLElement {
               </div>
             </div>
 
-            <button class="btn btn--primary" id="btn-run-lhs" type="button" style="width: 100%; margin-top: var(--space-2); background: var(--accent); color: white; font-weight: bold;">
+            <button class="btn btn--primary" id="btn-run-lhs" type="button" style="width: 100%; margin-top: var(--space-2); font-weight: bold;">
               ⚡ Ejecutar simulación LHS (Worker)
             </button>
 

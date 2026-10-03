@@ -137,7 +137,7 @@ export function pageCalibration(): HTMLElement {
           </div>
 
           <div style="display: flex; flex-direction: column; gap: var(--space-2); margin-top: var(--space-3);">
-            <button class="btn btn--primary" id="btn-fit-model" type="button" style="font-weight: bold; background: var(--accent); color: white;">
+            <button class="btn btn--primary" id="btn-fit-model" type="button" style="font-weight: bold;">
               ⚡ Calibrar modelo (Nelder–Mead)
             </button>
             <button class="btn btn--ghost" id="btn-run-bootstrap" type="button" disabled style="opacity: 0.6;">

@@ -36,7 +36,7 @@ body {
   z-index: 9999;
   padding: var(--space-2) var(--space-4);
   background: var(--accent);
-  color: #fff;
+  color: var(--accent-fg);
   font-size: var(--step-0);
   font-family: var(--font-ui);
   border-radius: 0 0 var(--radius) 0;

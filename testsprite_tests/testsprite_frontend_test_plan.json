@@ -1,0 +1,1427 @@
+[
+  {
+    "id": "TC001",
+    "title": "Open the app and reach the simulator",
+    "description": "Verifies a visitor can land on the app, navigate to the simulator, and see the main simulation interface load.",
+    "category": "Intervention and Patching Control",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to open the simulator"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the simulator page is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the main simulation visualization is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC002",
+    "title": "Open the simulator from the landing page",
+    "description": "This verifies that a visitor can move from the landing page to the simulator and see the simulator content load without authentication.",
+    "category": "Epidemic ODE Simulator",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to open the simulator"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the simulator page loads"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the simulation visualization is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC003",
+    "title": "Open the home page and reach the simulator",
+    "description": "This verifies that a visitor can land on the app, open the main simulation experience, and see the primary simulation content.",
+    "category": "Interactive Containment Challenge",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to open the simulator"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the simulator page loads"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the primary simulation visualization is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC004",
+    "title": "Open the app and keep the chosen theme after reloading",
+    "description": "This verifies that a visitor can reach the landing page, switch the visual theme, and return to the same preferred appearance after a reload.",
+    "category": "Dark Mode and Theme Switching",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the theme toggle control"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the interface appearance changes immediately"
+      },
+      {
+        "type": "action",
+        "description": "Reload the page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the preferred theme remains active"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC005",
+    "title": "Toggle the theme and keep it after reload",
+    "description": "Verifies a visitor can switch the app theme and that the choice persists after reloading the page.",
+    "category": "Intervention and Patching Control",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Toggle the theme"
+      },
+      {
+        "type": "action",
+        "description": "Scroll the page if needed"
+      },
+      {
+        "type": "action",
+        "description": "Wait for the page to update"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the theme has changed"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected theme persists"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC006",
+    "title": "Open the network spread simulator",
+    "description": "This verifies that a visitor can reach the network propagation page and see the graph visualization load successfully.",
+    "category": "Network Topology Infection",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /network"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the network simulation page loads"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the graph visualization is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC007",
+    "title": "Run a network propagation session",
+    "description": "Verifies a user can choose a topology, set network parameters, and observe infection clusters evolve on the graph.",
+    "category": "Intervention and Patching Control",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /network"
+      },
+      {
+        "type": "action",
+        "description": "Select a network topology"
+      },
+      {
+        "type": "action",
+        "description": "Set a node count"
+      },
+      {
+        "type": "action",
+        "description": "Set an edge probability"
+      },
+      {
+        "type": "action",
+        "description": "Start the propagation"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the network graph is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify infected clusters appear on the graph"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC008",
+    "title": "Update simulator parameters and see the epidemic curves change",
+    "description": "This verifies that changing the main simulator parameters updates the model output, including the plotted disease curves and reproduction number.",
+    "category": "Epidemic ODE Simulator",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /simulator"
+      },
+      {
+        "type": "action",
+        "description": "Adjust the transmission rate"
+      },
+      {
+        "type": "action",
+        "description": "Adjust the recovery rate"
+      },
+      {
+        "type": "action",
+        "description": "Select a numerical solver"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the plotted population curves update"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the reproduction number display updates"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC009",
+    "title": "Open the simulator and change model and solver settings",
+    "description": "Verifies a user can change the epidemic model, switch solvers, and see the simulation plots update.",
+    "category": "Intervention and Patching Control",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /simulator"
+      },
+      {
+        "type": "action",
+        "description": "Select the SIR model"
+      },
+      {
+        "type": "action",
+        "description": "Select the Euler solver"
+      },
+      {
+        "type": "action",
+        "description": "Change the beta parameter"
+      },
+      {
+        "type": "action",
+        "description": "Change the gamma parameter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the simulation plots update"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected model and solver are reflected in the interface"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC010",
+    "title": "Open the network propagation view",
+    "description": "This verifies that a visitor can navigate to the network simulation page and see the primary graph visualization.",
+    "category": "Interactive Containment Challenge",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /network"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the network page loads"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the graph visualization is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC011",
+    "title": "View the control page and run a mitigation scenario",
+    "description": "Verifies a user can open the control page, configure mitigation settings, run a scenario, and see outcome comparison results.",
+    "category": "Intervention and Patching Control",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /control"
+      },
+      {
+        "type": "action",
+        "description": "Configure the patching pulse schedule"
+      },
+      {
+        "type": "action",
+        "description": "Adjust the quarantine threshold"
+      },
+      {
+        "type": "action",
+        "description": "Run the simulation"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the outbreak comparison results are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the peak infection reduction is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC012",
+    "title": "Open the containment control view",
+    "description": "This verifies that a visitor can navigate to the intervention control page and see the primary mitigation interface.",
+    "category": "Interactive Containment Challenge",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /control"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the control page loads"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the mitigation controls are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC013",
+    "title": "Generate a network and advance infection through the graph",
+    "description": "This verifies that a user can configure a topology, start the spread simulation, and observe infected clusters evolve over time.",
+    "category": "Network Topology Infection",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /network"
+      },
+      {
+        "type": "action",
+        "description": "Select a network topology"
+      },
+      {
+        "type": "action",
+        "description": "Set the number of nodes"
+      },
+      {
+        "type": "action",
+        "description": "Set the edge probability"
+      },
+      {
+        "type": "action",
+        "description": "Start the spread simulation"
+      },
+      {
+        "type": "action",
+        "description": "Advance the simulation step"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify infected nodes are displayed on the graph"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the infection state changes after the step"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC014",
+    "title": "Compare epidemic model variants in the simulator",
+    "description": "Verifies a user can switch between SIR, SEIR, and SEIS and observe the simulation outcome change.",
+    "category": "Intervention and Patching Control",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /simulator"
+      },
+      {
+        "type": "action",
+        "description": "Select the SIR model"
+      },
+      {
+        "type": "action",
+        "description": "Run the simulation"
+      },
+      {
+        "type": "action",
+        "description": "Select the SEIR model"
+      },
+      {
+        "type": "action",
+        "description": "Run the simulation"
+      },
+      {
+        "type": "action",
+        "description": "Select the SEIS model"
+      },
+      {
+        "type": "action",
+        "description": "Run the simulation"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the plotted curves change across model selections"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the compartment outputs for each model are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC015",
+    "title": "Switch simulator models and compare the resulting trajectory",
+    "description": "This verifies that a user can change the compartmental model and see the epidemic trajectory update accordingly.",
+    "category": "Epidemic ODE Simulator",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /simulator"
+      },
+      {
+        "type": "action",
+        "description": "Choose a different compartmental model"
+      },
+      {
+        "type": "action",
+        "description": "Adjust the model parameters"
+      },
+      {
+        "type": "action",
+        "description": "Select another numerical solver"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the simulation curves change for the selected model"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected model remains applied"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC016",
+    "title": "Update the epidemic model parameters in the simulator",
+    "description": "This verifies that a user can change the simulation model settings and see the charts update to reflect the new configuration.",
+    "category": "Interactive Containment Challenge",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /simulator"
+      },
+      {
+        "type": "action",
+        "description": "Select a different epidemic model"
+      },
+      {
+        "type": "action",
+        "description": "Select a different solver"
+      },
+      {
+        "type": "action",
+        "description": "Adjust the transmission parameter"
+      },
+      {
+        "type": "action",
+        "description": "Adjust the recovery parameter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the displayed model configuration updates"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the simulation plots update"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC017",
+    "title": "Load calibration data and fit model parameters",
+    "description": "Verifies a user can load the calibration dataset, run optimization, and review fitted parameter estimates and residuals.",
+    "category": "Parameter Calibration",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /calibration"
+      },
+      {
+        "type": "action",
+        "description": "Load the synthetic malware outbreak dataset"
+      },
+      {
+        "type": "action",
+        "description": "Run parameter optimization"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify estimated parameter values are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the residual error summary is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC018",
+    "title": "Open the control strategies page",
+    "description": "This verifies that a visitor can reach the intervention analysis page and see the control content load without authentication.",
+    "category": "Control Strategies",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /control"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the control analysis page loads"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the intervention visualization is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC019",
+    "title": "Compare epidemic model behavior across simulation modes",
+    "description": "This verifies that a user can switch between model variants and observe the reproduction and curve changes in the simulator.",
+    "category": "Interactive Containment Challenge",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /simulator"
+      },
+      {
+        "type": "action",
+        "description": "Select the SIR model"
+      },
+      {
+        "type": "action",
+        "description": "Record the displayed simulation outcome"
+      },
+      {
+        "type": "action",
+        "description": "Select the SEIR model"
+      },
+      {
+        "type": "action",
+        "description": "Select the SEIS model"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the model-specific curves change"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the reproduction number display updates"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC020",
+    "title": "Step through network propagation",
+    "description": "Verifies a user can advance the network simulation step by step and see the infection state change over time.",
+    "category": "Intervention and Patching Control",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /network"
+      },
+      {
+        "type": "action",
+        "description": "Select a network topology"
+      },
+      {
+        "type": "action",
+        "description": "Start the propagation"
+      },
+      {
+        "type": "action",
+        "description": "Advance one simulation step"
+      },
+      {
+        "type": "action",
+        "description": "Advance another simulation step"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the infection state changes over successive steps"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the graph visualization updates"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC021",
+    "title": "Change intervention timing and rerun the scenario",
+    "description": "Verifies a user can adjust control timing, rerun the mitigation scenario, and observe that the reported outbreak response changes.",
+    "category": "Intervention and Patching Control",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /control"
+      },
+      {
+        "type": "action",
+        "description": "Modify the intervention timing"
+      },
+      {
+        "type": "action",
+        "description": "Change the control settings"
+      },
+      {
+        "type": "action",
+        "description": "Run the scenario again"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify updated outbreak response results are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the comparison outcome differs from the previous run"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC022",
+    "title": "Run a network propagation scenario",
+    "description": "This verifies that a user can configure a network outbreak, start propagation, and observe the infection cluster evolve on the graph.",
+    "category": "Interactive Containment Challenge",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /network"
+      },
+      {
+        "type": "action",
+        "description": "Choose a network topology"
+      },
+      {
+        "type": "action",
+        "description": "Set the node count"
+      },
+      {
+        "type": "action",
+        "description": "Set the edge probability"
+      },
+      {
+        "type": "action",
+        "description": "Start the propagation"
+      },
+      {
+        "type": "action",
+        "description": "Advance the simulation by one step"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify infected nodes are shown on the graph"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the infection cluster changes after stepping"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC023",
+    "title": "Open the calibration view",
+    "description": "This verifies that a visitor can navigate to the calibration page and see the model fitting workspace.",
+    "category": "Interactive Containment Challenge",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /calibration"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the calibration page loads"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the calibration workspace is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC024",
+    "title": "Compare controlled and uncontrolled outbreak outcomes",
+    "description": "This verifies that a user can configure pulse patching and quarantine thresholds and see the outbreak outcome change compared with the baseline case.",
+    "category": "Control Strategies",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /control"
+      },
+      {
+        "type": "action",
+        "description": "Configure pulse patching"
+      },
+      {
+        "type": "action",
+        "description": "Set the quarantine threshold"
+      },
+      {
+        "type": "action",
+        "description": "Run the controlled scenario"
+      },
+      {
+        "type": "action",
+        "description": "Switch to the uncontrolled comparison"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the outbreak outcome comparison is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the controlled scenario shows reduced spread"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC025",
+    "title": "Change network topology and observe a new infection pattern",
+    "description": "This verifies that selecting a different graph type and updating network size produces a different cluster pattern in the propagation view.",
+    "category": "Network Topology Infection",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /network"
+      },
+      {
+        "type": "action",
+        "description": "Select a different network topology"
+      },
+      {
+        "type": "action",
+        "description": "Change the node count"
+      },
+      {
+        "type": "action",
+        "description": "Change the edge probability"
+      },
+      {
+        "type": "action",
+        "description": "Start the spread simulation"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the graph visualization updates to the new network"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the infected cluster pattern is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC026",
+    "title": "Compare solver choices in the simulator",
+    "description": "Verifies a user can switch between numerical solvers and see the displayed simulation results update.",
+    "category": "Intervention and Patching Control",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /simulator"
+      },
+      {
+        "type": "action",
+        "description": "Select the RK4 solver"
+      },
+      {
+        "type": "action",
+        "description": "Run the simulation"
+      },
+      {
+        "type": "action",
+        "description": "Select the DOPRI5 solver"
+      },
+      {
+        "type": "action",
+        "description": "Run the simulation"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the simulation results update after switching solvers"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the chart remains visible after the solver change"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC027",
+    "title": "Open the challenge page",
+    "description": "This verifies that a visitor can navigate to the challenge page and see the containment game interface.",
+    "category": "Interactive Containment Challenge",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /challenge"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the challenge page loads"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the challenge interface is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC028",
+    "title": "Compare outbreak control with and without intervention",
+    "description": "This verifies that a user can configure containment measures, run the scenario, and observe reduced outbreak impact compared with the uncontrolled case.",
+    "category": "Interactive Containment Challenge",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /control"
+      },
+      {
+        "type": "action",
+        "description": "Configure a pulse patching strategy"
+      },
+      {
+        "type": "action",
+        "description": "Set a quarantine threshold"
+      },
+      {
+        "type": "action",
+        "description": "Run the controlled scenario"
+      },
+      {
+        "type": "action",
+        "description": "Switch to the uncontrolled baseline"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the controlled outcome is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the outbreak impact differs from the baseline"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC029",
+    "title": "Fit calibration data and review estimated parameters",
+    "description": "This verifies that a user can load calibration data, run parameter fitting, and see the estimated parameters and residuals update.",
+    "category": "Calibration",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /calibration"
+      },
+      {
+        "type": "action",
+        "description": "Load the available dataset"
+      },
+      {
+        "type": "action",
+        "description": "Run parameter fitting"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify estimated parameters are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify residuals are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC030",
+    "title": "Reload calibration with a different dataset",
+    "description": "Verifies a user can load another dataset, rerun optimization, and see the fitted results update.",
+    "category": "Parameter Calibration",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /calibration"
+      },
+      {
+        "type": "action",
+        "description": "Load the synthetic malware outbreak dataset"
+      },
+      {
+        "type": "action",
+        "description": "Run parameter optimization"
+      },
+      {
+        "type": "action",
+        "description": "Load a different dataset"
+      },
+      {
+        "type": "action",
+        "description": "Run parameter optimization again"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the fitted parameter results update"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a new residual summary is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC031",
+    "title": "Fit calibration parameters and review the results",
+    "description": "This verifies that a user can load data in calibration, run fitting, and see estimated parameters and residuals.",
+    "category": "Interactive Containment Challenge",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /calibration"
+      },
+      {
+        "type": "action",
+        "description": "Load a dataset"
+      },
+      {
+        "type": "action",
+        "description": "Run parameter fitting"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify estimated parameters are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify residual results are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC032",
+    "title": "Open the calibration page and load fitting results",
+    "description": "This verifies that a user can access the calibration workflow and view the fitting interface and results area.",
+    "category": "Calibration",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /calibration"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the calibration page loads"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the parameter fitting interface is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC033",
+    "title": "Open the theory reference page",
+    "description": "This verifies that a visitor can navigate to the theory page and see the mathematical reference content.",
+    "category": "Interactive Containment Challenge",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /theory"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the theory page loads"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the mathematical reference content is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC034",
+    "title": "Submit a challenge attempt and review the score",
+    "description": "This verifies that a user can allocate resources in the challenge, start the scenario, and review the resulting score and survival outcome.",
+    "category": "Interactive Containment Challenge",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /challenge"
+      },
+      {
+        "type": "action",
+        "description": "Allocate budget across mitigation options"
+      },
+      {
+        "type": "action",
+        "description": "Start the scenario"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the score result is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the survival metrics are displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC035",
+    "title": "Rebalance challenge resources and compare outcomes",
+    "description": "This verifies that a user can change the allocation in the challenge, rerun the scenario, and see a different containment result.",
+    "category": "Interactive Containment Challenge",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /challenge"
+      },
+      {
+        "type": "action",
+        "description": "Allocate budget across mitigation options"
+      },
+      {
+        "type": "action",
+        "description": "Start the scenario"
+      },
+      {
+        "type": "action",
+        "description": "Adjust the resource allocation"
+      },
+      {
+        "type": "action",
+        "description": "Start the scenario again"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the updated outcome is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the new score differs from the previous attempt"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC036",
+    "title": "Open the challenge page and review the score area",
+    "description": "This verifies that a visitor can access the challenge mode and see the budget and scoring interface load correctly.",
+    "category": "Challenge",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /challenge"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the challenge page loads"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the scoring interface is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC037",
+    "title": "Inspect the theory sections and equations",
+    "description": "Verifies a visitor can browse the theory page sections and see the rendered model equations for SIR, SEIR, and SEIS.",
+    "category": "Mathematical Theory and Formulas",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /theory"
+      },
+      {
+        "type": "action",
+        "description": "Open the SIR section"
+      },
+      {
+        "type": "action",
+        "description": "Open the SEIR section"
+      },
+      {
+        "type": "action",
+        "description": "Open the SEIS section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the model equations are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the theory reference content is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC038",
+    "title": "Review theoretical assumptions after calibration",
+    "description": "This verifies that a user can inspect the theory reference content after working with model fitting and see the mathematical derivations.",
+    "category": "Interactive Containment Challenge",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /theory"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the SIR model reference is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the KaTeX-rendered equations are displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC039",
+    "title": "Review the theory pages for model derivations",
+    "description": "This verifies that a visitor can open the theory reference and view the mathematical model sections and rendered equations.",
+    "category": "Theory",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /theory"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the theory page loads"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the mathematical equations are displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC040",
+    "title": "Open the about page and access the repository link",
+    "description": "This verifies that a visitor can read the project information and use the external repository link from the about page.",
+    "category": "About and GitHub Links",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /about"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the project information is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Click the repository link"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the external repository page opens"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC041",
+    "title": "Open the UI kit and inspect accessible components",
+    "description": "This verifies that a visitor can open the component showcase and see the design system examples rendered.",
+    "category": "UI Kit",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /ui-kit"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the UI kit page loads"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the component showcase is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC042",
+    "title": "Review the challenge budget and score",
+    "description": "Verifies a user can open the challenge page, allocate a budget, and see the resulting score or outcome summary.",
+    "category": "Intervention and Patching Control",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /challenge"
+      },
+      {
+        "type": "action",
+        "description": "Allocate a budget"
+      },
+      {
+        "type": "action",
+        "description": "Submit the challenge configuration"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the challenge outcome summary is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a score or performance result is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC043",
+    "title": "Explore sensitivity analysis results",
+    "description": "This verifies that a user can open the sensitivity page and review global or local parameter importance results.",
+    "category": "Interactive Containment Challenge",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /sensitivity"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the sensitivity analysis page loads"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify parameter sensitivity results are displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC044",
+    "title": "Browse the sensitivity analysis page",
+    "description": "This verifies that a user can open sensitivity analysis and view the parameter analysis results area.",
+    "category": "Sensitivity",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /sensitivity"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the sensitivity analysis page loads"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the parameter analysis results are displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC045",
+    "title": "Open the UI kit showcase",
+    "description": "This verifies that a visitor can navigate to the UI kit page and see the design system showcase content.",
+    "category": "UI Kit and Design System Showcase",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /ui-kit"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the UI kit page loads"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the design system showcase is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC046",
+    "title": "Open the about page and access project resources",
+    "description": "This verifies that a visitor can open the project information page and reach the repository or reference links.",
+    "category": "About",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /about"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the about page loads"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify project information is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC047",
+    "title": "Explore the component showcase",
+    "description": "Verifies a user can open the UI kit page and browse its interactive component examples.",
+    "category": "Intervention and Patching Control",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /ui-kit"
+      },
+      {
+        "type": "action",
+        "description": "Scroll through the component showcase"
+      },
+      {
+        "type": "action",
+        "description": "Interact with a sample component"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the component showcase content is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify interactive example states are visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC048",
+    "title": "Use the repository link from the about page",
+    "description": "This verifies that a casual visitor can open the project repository from the about page and reach the external destination.",
+    "category": "About and GitHub Links",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /about"
+      },
+      {
+        "type": "action",
+        "description": "Click the repository link"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the repository page opens"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the external destination is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC049",
+    "title": "Open the about page and follow the project link",
+    "description": "Verifies a visitor can open the about page and access the project repository link behavior from the page.",
+    "category": "Intervention and Patching Control",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /about"
+      },
+      {
+        "type": "action",
+        "description": "Click the project repository link"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the about page content is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the external project link is available"
+      }
+    ],
+    "priority": "Low"
+  }
+]
