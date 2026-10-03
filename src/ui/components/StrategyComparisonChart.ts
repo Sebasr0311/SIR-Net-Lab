@@ -177,7 +177,15 @@ export function createStrategyComparisonChart(): StrategyComparisonChartHandle {
     if (chartInstance.data.datasets[2]) chartInstance.data.datasets[2].data = acqData
     if (chartInstance.data.datasets[3]) chartInstance.data.datasets[3].data = hubsData
 
-    chartInstance.update('none')
+    if (!canvas.isConnected || !canvas.ownerDocument?.defaultView) {
+      return
+    }
+
+    try {
+      chartInstance.update('none')
+    } catch {
+      // Ignorar excepciones al desmontar
+    }
   }
 
   function destroy(): void {

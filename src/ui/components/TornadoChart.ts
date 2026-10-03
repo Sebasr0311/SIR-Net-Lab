@@ -136,7 +136,15 @@ export function createTornadoChart(): TornadoChartHandle {
     chartInstance.data.datasets[0]!.backgroundColor = backgroundColors
     chartInstance.data.datasets[0]!.borderColor = borderColors
 
-    chartInstance.update()
+    if (!canvas.isConnected || !canvas.ownerDocument?.defaultView) {
+      return
+    }
+
+    try {
+      chartInstance.update('none')
+    } catch {
+      // Ignorar excepciones al desmontar
+    }
   }
 
   btnExport?.addEventListener('click', () => {

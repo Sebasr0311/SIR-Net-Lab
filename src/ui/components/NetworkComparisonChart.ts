@@ -190,7 +190,15 @@ export function createNetworkComparisonChart(): NetworkComparisonHandle {
       rmseEl.textContent = `${data.rmseI.toFixed(1)} nodos`
     }
 
-    chart.update('none')
+    if (!canvas.isConnected || !canvas.ownerDocument?.defaultView) {
+      return
+    }
+
+    try {
+      chart.update('none')
+    } catch {
+      // Ignorar excepciones al desmontar
+    }
   }
 
   function destroy(): void {

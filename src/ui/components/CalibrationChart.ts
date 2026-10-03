@@ -216,7 +216,15 @@ export function createCalibrationChart(): CalibrationChartHandle {
       chartInstance.data.datasets[3]!.data = []
     }
 
-    chartInstance.update()
+    if (!canvas.isConnected || !canvas.ownerDocument?.defaultView) {
+      return
+    }
+
+    try {
+      chartInstance.update('none')
+    } catch {
+      // Ignorar excepciones transitorias al desmontar
+    }
   }
 
   btnExport?.addEventListener('click', () => {

@@ -1,0 +1,16 @@
+{
+  "name": "SIR-Net Lab",
+  "short_name": "SIR-Net Lab",
+  "description": "Simulador interactivo de propagación de malware en redes con ecuaciones diferenciales no lineales y simulación estocástica de Gillespie.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fafaf8",
+  "theme_color": "#1f4e79",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

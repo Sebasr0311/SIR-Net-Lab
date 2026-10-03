@@ -231,7 +231,15 @@ export function createTimeChart(): TimeChartHandle {
       chart.data.datasets[3].data = series.R
     }
 
-    chart.update('none') // Actualización inmediata sin animaciones lentas
+    if (!canvas.isConnected || !canvas.ownerDocument?.defaultView) {
+      return
+    }
+
+    try {
+      chart.update('none') // Actualización inmediata sin animaciones lentas
+    } catch {
+      // Ignorar excepciones transitorias si el canvas se desmontó durante la transición de ruta
+    }
   }
 
   function destroy(): void {
