@@ -24,7 +24,7 @@ export function pageNetwork(): HTMLElement {
         <header class="network-header" style="margin-bottom: var(--space-2);">
           <h1 style="font-size: var(--step-2); margin-bottom: var(--space-1);">Red</h1>
           <p class="text-muted" style="color: var(--ink-2); font-size: var(--step--1);">
-            Propagación estocástica de malware sobre grafos (Erdős–Rényi, Watts–Strogatz, Barabási–Albert)
+            Simulación del contagio nodo a nodo sobre diferentes estructuras de red (aleatoria, mundo pequeño y libre de escala)
           </p>
         </header>
 
@@ -34,12 +34,10 @@ export function pageNetwork(): HTMLElement {
         <div class="network-comparison-slot" style="margin-top: var(--space-6);"></div>
 
         <div class="card network-theory-box" style="margin-top: var(--space-6); border-left: 4px solid var(--accent);">
-          <h3 style="font-size: var(--step-0); margin-bottom: var(--space-2);">¿Por qué falla el campo medio en redes libres de escala?</h3>
+          <h3 style="font-size: var(--step-0); margin-bottom: var(--space-2);">💡 ¿Por qué una red real se comporta distinto a una fórmula promedio?</h3>
           <p style="font-size: var(--step--1); line-height: 1.6; color: var(--ink-2);">
-            Las ecuaciones diferenciales estándar asumen <em>mezcla homogénea</em> (cada individuo tiene la misma probabilidad de interactuar con cualquier otro).
-            En redes libres de escala (Barabási–Albert), la presencia de <strong>hubs altamente conectados</strong> hace que el segundo momento del grado
-            ⟨k²⟩ sea muy elevado, reduciendo el umbral epidémico λ_c = ⟨k⟩ / ⟨k²⟩ drásticamente.
-            El malware se propaga mucho más rápido en las etapas iniciales de lo que predice la EDO homogénea.
+            Las fórmulas matemáticas tradicionales asumen que cada computadora tiene exactamente la misma probabilidad de infectar a cualquier otra.
+            En cambio, en redes reales existen <strong>servidores centrales o equipos superconectados (hubs)</strong>. Si el malware alcanza uno de estos nodos clave, el contagio se dispara de inmediato por toda la red, superando con creces la velocidad prevista por un modelo promedio homogéneo.
           </p>
         </div>
       </div>

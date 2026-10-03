@@ -36,9 +36,8 @@ export function pageSimulator(): HTMLElement {
         <div class="simulator-data"></div>
         <div class="simulator-theory-callout card">
           <p>
-            💡 <strong>Rigor matemático:</strong> ¿Quieres ver cómo se deduce analíticamente el umbral epidémico $R_0 = \\beta / \\gamma$,
-            la integral primera $I + S - (N/R_0)\\ln S = C$ y el tamaño final del brote?
-            <a href="#/theory">Explora las derivaciones paso a paso en el módulo de Teoría &rarr;</a>
+            💡 <strong>¿Querés profundizar en la matemática del modelo?</strong> Aprendé cómo se deducen el ritmo reproductivo ($R_0$), el momento exacto del pico de contagios y el tamaño final del brote.
+            <a href="#/theory">Ver explicaciones paso a paso en Teoría &rarr;</a>
           </p>
         </div>
       </div>

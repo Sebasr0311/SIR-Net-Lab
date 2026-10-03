@@ -29,8 +29,7 @@ export function pageCalibration(): HTMLElement {
       <header class="calibration-header" style="margin-bottom: var(--space-4);">
         <h1 style="font-size: var(--step-2); margin-bottom: var(--space-1);">Calibración</h1>
         <p class="text-muted" style="color: var(--ink-2); font-size: var(--step--1);">
-          Estimación de parámetros epidemiológicos (β, γ) por mínimos cuadrados no lineales (Nelder–Mead),
-          cuantificación de incertidumbre por Bootstrap e identificabilidad práctica
+          Ajustá los parámetros del modelo a datos reales o simulados de un brote para conocer la velocidad de contagio y recuperación.
         </p>
       </header>
 
@@ -120,11 +119,11 @@ export function pageCalibration(): HTMLElement {
 
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2); margin-bottom: var(--space-2);">
             <div>
-              <label for="init-beta" style="font-size: var(--step--1); display: block; font-weight: 600;">Semilla β₀:</label>
+              <label for="init-beta" style="font-size: var(--step--1); display: block; font-weight: 600;">Valor inicial β₀ (contagio):</label>
               <input type="number" id="init-beta" aria-label="Estimación inicial beta" value="0.30" step="0.05" min="0.01" style="width: 100%; padding: 4px 8px;" />
             </div>
             <div>
-              <label for="init-gamma" style="font-size: var(--step--1); display: block; font-weight: 600;">Semilla γ₀:</label>
+              <label for="init-gamma" style="font-size: var(--step--1); display: block; font-weight: 600;">Valor inicial γ₀ (recuperación):</label>
               <input type="number" id="init-gamma" aria-label="Estimación inicial gamma" value="0.10" step="0.01" min="0.01" style="width: 100%; padding: 4px 8px;" />
             </div>
           </div>
@@ -132,16 +131,16 @@ export function pageCalibration(): HTMLElement {
           <div style="margin-bottom: var(--space-3);">
             <label style="font-size: var(--step--1); display: flex; align-items: center; gap: 8px; cursor: pointer;">
               <input type="checkbox" id="check-fit-i0" aria-label="Estimar conjuntamente I0" />
-              <span>Estimar conjuntamente condición inicial I₀</span>
+              <span>Estimar también el número inicial de infectados (I₀)</span>
             </label>
           </div>
 
           <div style="display: flex; flex-direction: column; gap: var(--space-2); margin-top: var(--space-3);">
             <button class="btn btn--primary" id="btn-fit-model" type="button" style="font-weight: bold;">
-              ⚡ Calibrar modelo (Nelder–Mead)
+              ⚡ Ajustar modelo a los datos
             </button>
             <button class="btn btn--ghost" id="btn-run-bootstrap" type="button" disabled style="opacity: 0.6;">
-              🎲 Calcular intervalos Bootstrap (95%)
+              🎲 Calcular margen de confianza (95%)
             </button>
           </div>
 

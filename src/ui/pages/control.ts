@@ -25,14 +25,14 @@ export function pageControl(): HTMLElement {
       <header class="control-header" style="margin-bottom: var(--space-4);">
         <h1 style="font-size: var(--step-2); margin-bottom: var(--space-1);">Control</h1>
         <p class="text-muted" style="color: var(--ink-2); font-size: var(--step--1);">
-          Estrategias de mitigación, campañas de parcheo por impulsos y contención topológica en redes
+          Estrategias de defensa: aplicá parches de seguridad y evaluá cómo contener el malware en la red
         </p>
       </header>
 
       <!-- Pestañas de navegación de modo de control -->
       <div class="control-tabs" role="tablist" aria-label="Modo de control" style="display: flex; gap: var(--space-2); margin-bottom: var(--space-4); border-bottom: 1px solid var(--line); padding-bottom: var(--space-2);">
         <button class="btn btn-tab btn-tab-edo" role="tab" aria-selected="true" aria-controls="panel-edo" id="tab-edo" type="button" style="font-weight: 600;">
-          📈 Campañas en EDO (Impulsos)
+          📈 Campañas de actualización (Parches)
         </button>
         <button class="btn btn-tab btn-tab-network btn--ghost" role="tab" aria-selected="false" aria-controls="panel-network" id="tab-network" type="button">
           🕸️ Inmunización en Redes
@@ -48,14 +48,14 @@ export function pageControl(): HTMLElement {
             
             <div style="margin-bottom: var(--space-3);">
               <label for="slider-beta" style="font-size: var(--step--1); display: block; margin-bottom: 4px; font-weight: 600;">
-                Tasa de contacto β: <span id="val-beta">0.60</span>
+                Velocidad de contagio (β): <span id="val-beta">0.60</span>
               </label>
               <input type="range" id="slider-beta" aria-label="Tasa de contacto beta" min="0.1" max="1.5" step="0.05" value="0.6" style="width: 100%;" />
             </div>
 
             <div style="margin-bottom: var(--space-3);">
               <label for="slider-gamma" style="font-size: var(--step--1); display: block; margin-bottom: 4px; font-weight: 600;">
-                Tasa de recuperación γ: <span id="val-gamma">0.20</span>
+                Velocidad de recuperación / desinfección (γ): <span id="val-gamma">0.20</span>
               </label>
               <input type="range" id="slider-gamma" aria-label="Tasa de recuperación gamma" min="0.05" max="0.5" step="0.01" value="0.2" style="width: 100%;" />
             </div>
@@ -63,7 +63,7 @@ export function pageControl(): HTMLElement {
             <hr style="border: 0; border-top: 1px solid var(--line); margin: var(--space-3) 0;" />
 
             <h4 style="font-size: var(--step--1); margin-bottom: var(--space-2); text-transform: uppercase; letter-spacing: 0.5px; color: var(--ink-2);">
-              Impulsos programados (t_k, p_k)
+              Actualizaciones programadas (Día y % de equipos)
             </h4>
 
             <div id="impulses-list" style="display: flex; flex-direction: column; gap: var(--space-2); margin-bottom: var(--space-3);"></div>
@@ -73,7 +73,7 @@ export function pageControl(): HTMLElement {
                 ➕ Agregar impulso
               </button>
               <button class="btn btn--ghost btn-preset-critical" type="button" style="font-size: var(--step--1);">
-                🛡️ Cobertura crítica (p_c)
+                🛡️ Cobertura mínima de seguridad
               </button>
             </div>
           </div>
@@ -90,7 +90,7 @@ export function pageControl(): HTMLElement {
 
             <div class="card" style="display: flex; align-items: center; justify-content: space-between; padding: var(--space-4);">
               <div>
-                <span class="text-muted" style="font-size: var(--step--1); color: var(--ink-2);">Reducción del pico (ΔI_max)</span>
+                <span class="text-muted" style="font-size: var(--step--1); color: var(--ink-2);">Reducción del pico de contagios</span>
                 <div id="kpi-peak-red" style="font-size: var(--step-2); font-weight: bold; font-family: var(--font-mono); color: var(--accent);">0</div>
               </div>
               <div style="font-size: 2rem;" aria-hidden="true">📉</div>

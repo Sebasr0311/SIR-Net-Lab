@@ -25,21 +25,23 @@ const ACTIONS: TacticalAction[] = [
     id: 'hubs',
     name: 'Proteger Servidores Hubs',
     cost: 350,
-    description: 'Inmuniza prioritariamente los nodos de mayor conectividad de la red.',
+    description:
+      'Aplica parches prioritarios a los servidores centrales y equipos con más conexiones en la red.',
     icon: '🛡️',
   },
   {
     id: 'acquaintance',
     name: 'Inmunización por Vecinos',
     cost: 200,
-    description: 'Muestrea equipos y protege a sus vecinos (aprovecha la paradoja de la amistad).',
+    description:
+      'Elige computadoras al azar y vacuna a sus contactos directos (estrategia rápida y altamente efectiva).',
     icon: '👥',
   },
   {
     id: 'random',
     name: 'Parcheo Masivo Aleatorio',
     cost: 150,
-    description: 'Despliegue rápido de parches distribuidos uniformemente.',
+    description: 'Distribuye actualizaciones de seguridad al azar en toda la red de computadoras.',
     icon: '🎲',
   },
   {
@@ -47,7 +49,7 @@ const ACTIONS: TacticalAction[] = [
     name: 'Micro-segmentación de Red',
     cost: 300,
     description:
-      'Aísla subredes y bloquea puertos críticos, reduciendo la tasa de contagio β a la mitad.',
+      'Separa subredes y cierra puertos sospechosos para frenar la velocidad de contagio a la mitad.',
     icon: '🚧',
   },
 ]
@@ -92,7 +94,7 @@ export function pageChallenge(): HTMLElement {
               <input type="radio" name="difficulty" value="level1" />
               <div>
                 <strong>Nivel 1: Empresa Local</strong>
-                <div style="font-size: var(--step--1); color: var(--ink-2);">Red Erdős–Rényi homogénea (N=200)</div>
+                <div style="font-size: var(--step--1); color: var(--ink-2);">Red uniforme de oficinas (200 equipos conectados al azar)</div>
               </div>
             </label>
 
@@ -100,7 +102,7 @@ export function pageChallenge(): HTMLElement {
               <input type="radio" name="difficulty" value="level2" />
               <div>
                 <strong>Nivel 2: Campus Universitario</strong>
-                <div style="font-size: var(--step--1); color: var(--ink-2);">Watts–Strogatz con atajos (N=300)</div>
+                <div style="font-size: var(--step--1); color: var(--ink-2);">Red comunitaria con enlaces rápidos entre áreas (300 equipos)</div>
               </div>
             </label>
 
@@ -108,7 +110,7 @@ export function pageChallenge(): HTMLElement {
               <input type="radio" name="difficulty" value="level3" checked />
               <div>
                 <strong>Nivel 3: Infraestructura Crítica</strong>
-                <div style="font-size: var(--step--1); color: var(--ink-2);">Barabási–Albert con super-hubs (N=400)</div>
+                <div style="font-size: var(--step--1); color: var(--ink-2);">Red jerárquica con servidores centrales clave (400 equipos)</div>
               </div>
             </label>
           </div>
@@ -340,11 +342,11 @@ export function pageChallenge(): HTMLElement {
     if (resExplanation) {
       if (difficulty === 'level3') {
         resExplanation.textContent = selectedActions.has('hubs')
-          ? 'En redes libres de escala (Barabási-Albert), priorizar los Hubs es matemáticamente la decisión más efectiva: corta los caminos críticos de contagio y eleva drásticamente el umbral epidémico.'
-          : 'En redes libres de escala, ignorar los Hubs permite que el malware use los nodos de alto grado para propagarse rápidamente a toda la red, reduciendo la efectividad del parcheo uniforme.'
+          ? 'Al blindar los servidores centrales (hubs), cortaste las vías críticas del ataque. En redes jerárquicas, proteger estos pocos puntos neurálgicos frena la propagación de forma mucho más eficaz y económica que parchar máquinas al azar.'
+          : 'Al no proteger los servidores centrales (hubs), el malware los aprovechó para dispersarse masivamente a toda la organización. En redes jerárquicas, dejar desprotegidos los centros clave hace que cualquier otra medida pierda fuerza.'
       } else {
         resExplanation.textContent =
-          'El aislamiento y la combinación de inmunización redujeron el número reproductivo efectivo R_ef por debajo de 1 antes de alcanzar la saturación del sistema.'
+          'La combinación de parches y micro-segmentación logró reducir la velocidad de contagio por debajo del ritmo de contención, permitiendo que el brote se extinguiera antes de colapsar la infraestructura.'
       }
     }
 

@@ -23,8 +23,8 @@ export function pageHome(): HTMLElement {
           SIR-Net Lab
         </h1>
         <p style="font-size: var(--step-1); color: var(--ink-2); max-width: 780px; margin: 0 auto var(--space-6); line-height: 1.6;">
-          Simulador interactivo de propagación de malware en redes complejas. 
-          Explorá la confluencia entre sistemas de EDO no lineales, procesos estocásticos de Gillespie, topologías de grafos y estrategias de control óptimo.
+          Simulador interactivo para comprender cómo se propaga el malware en redes informáticas.
+          Experimentá con modelos matemáticos en tiempo real, observá el contagio nodo a nodo y probá estrategias de ciberseguridad para contener brotes.
         </p>
 
         <div style="display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap;">
@@ -71,8 +71,7 @@ export function pageHome(): HTMLElement {
               <div style="font-size: 2rem; margin-bottom: var(--space-2);">📈</div>
               <h3 style="font-size: var(--step-1); margin: 0 0 var(--space-2) 0;">Simulador EDO</h3>
               <p style="font-size: var(--step--1); color: var(--ink-2); line-height: 1.6; margin: 0 0 var(--space-3) 0;">
-                Integración numérica de modelos SIR, SEIR y SEIS mediante Euler, RK4 y Dormand–Prince adaptativo (RK45). 
-                Visualización de series temporales, plano de fase S–I con trayectorias interactivas y semáforo R₀.
+                Simulá la propagación de malware con modelos compartimentales clásicos (SIR, SEIR, SEIS). Ajustá tasas de infección y recuperación, compará métodos numéricos y observá las curvas de contagio y el umbral de propagación (R₀).
               </p>
             </div>
             <a href="#/simulator" style="font-size: var(--step--1); font-weight: bold; color: var(--accent); text-decoration: underline;">
@@ -86,7 +85,7 @@ export function pageHome(): HTMLElement {
               <div style="font-size: 2rem; margin-bottom: var(--space-2);">🕸️</div>
               <h3 style="font-size: var(--step-1); margin: 0 0 var(--space-2) 0;">Simulación en Redes</h3>
               <p style="font-size: var(--step--1); color: var(--ink-2); line-height: 1.6; margin: 0 0 var(--space-3) 0;">
-                Simulación estocástica exacta con el algoritmo de Gillespie sobre topologías Erdős–Rényi, Watts–Strogatz y Barabási–Albert con hasta 2000 nodos en Canvas 2D acelerado.
+                Observá el contagio en tiempo real sobre redes de computadoras con diferentes topologías (aleatorias, mundos pequeños y libres de escala). Mirá cómo los equipos más conectados actúan como superpropagadores.
               </p>
             </div>
             <a href="#/network" style="font-size: var(--step--1); font-weight: bold; color: var(--accent); text-decoration: underline;">
@@ -100,7 +99,7 @@ export function pageHome(): HTMLElement {
               <div style="font-size: 2rem; margin-bottom: var(--space-2);">🛡️</div>
               <h3 style="font-size: var(--step-1); margin: 0 0 var(--space-2) 0;">Control y Estrategias</h3>
               <p style="font-size: var(--step--1); color: var(--ink-2); line-height: 1.6; margin: 0 0 var(--space-3) 0;">
-                Campañas de inmunización por impulsos y contención en redes. Comparación rigurosa bajo presupuesto fijo entre parcheo aleatorio, hubs y vecinos (Paradoja de la Amistad).
+                Diseñá defensas contra malware: aislamiento de equipos infectados y campañas de actualización o parcheo. Compará qué tan efectivo es proteger equipos al azar versus los más conectados.
               </p>
             </div>
             <a href="#/control" style="font-size: var(--step--1); font-weight: bold; color: var(--accent); text-decoration: underline;">
@@ -114,7 +113,7 @@ export function pageHome(): HTMLElement {
               <div style="font-size: 2rem; margin-bottom: var(--space-2);">🎯</div>
               <h3 style="font-size: var(--step-1); margin: 0 0 var(--space-2) 0;">Modo Reto</h3>
               <p style="font-size: var(--step--1); color: var(--ink-2); line-height: 1.6; margin: 0 0 var(--space-3) 0;">
-                Entorno de simulación gamificado. Administrá un presupuesto limitado en créditos para detener un ciberataque agresivo antes de que infecte a la infraestructura crítica.
+                Poné a prueba tus habilidades de defensa. Gestioná un presupuesto limitado en créditos para aplicar parches, segmentar la red y contener un ataque antes de que comprometa tus servidores críticos.
               </p>
             </div>
             <a href="#/challenge" style="font-size: var(--step--1); font-weight: bold; color: var(--accent); text-decoration: underline;">
@@ -128,7 +127,7 @@ export function pageHome(): HTMLElement {
               <div style="font-size: 2rem; margin-bottom: var(--space-2);">📐</div>
               <h3 style="font-size: var(--step-1); margin: 0 0 var(--space-2) 0;">Calibración de Modelos</h3>
               <p style="font-size: var(--step--1); color: var(--ink-2); line-height: 1.6; margin: 0 0 var(--space-3) 0;">
-                Ajuste no lineal por mínimos cuadrados con Nelder–Mead, soporte para CSV de brotes reales, intervalos de confianza al 95% por Bootstrap residual y paisajes de identificabilidad 2D.
+                Aprendé a deducir los parámetros de un ataque a partir de datos observados. Subí tus propios registros o usá casos de ejemplo para encontrar la velocidad de contagio y recuperación que mejor explican el brote.
               </p>
             </div>
             <a href="#/calibration" style="font-size: var(--step--1); font-weight: bold; color: var(--accent); text-decoration: underline;">
@@ -142,7 +141,7 @@ export function pageHome(): HTMLElement {
               <div style="font-size: 2rem; margin-bottom: var(--space-2);">🌪️</div>
               <h3 style="font-size: var(--step-1); margin: 0 0 var(--space-2) 0;">Sensibilidad y Bifurcación</h3>
               <p style="font-size: var(--step--1); color: var(--ink-2); line-height: 1.6; margin: 0 0 var(--space-3) 0;">
-                Ranking de elasticidades locales (gráfico tornado), mapa de calor de bifurcación transcrítica R₀=1 y propagación de incertidumbre Monte Carlo con Hipercubo Latino (LHS) en Web Worker.
+                Descubrí qué variables tienen mayor impacto en la gravedad de la epidemia. Analizá cómo pequeñas variaciones en las defensas marcan la diferencia entre un brote controlado y una epidemia masiva.
               </p>
             </div>
             <a href="#/sensitivity" style="font-size: var(--step--1); font-weight: bold; color: var(--accent); text-decoration: underline;">
@@ -168,13 +167,13 @@ export function pageHome(): HTMLElement {
           <div>
             <div style="font-weight: bold; font-size: var(--step-0); color: var(--accent); margin-bottom: 4px;">Paso 2: Compará con la red</div>
             <p style="font-size: var(--step--1); color: var(--ink-2); margin: 0; line-height: 1.5;">
-              Activá el comparador EDO vs. Red y observá cómo la heterogeneidad de los hubs altera el pico respecto a la teoría de campo medio.
+              Observá la diferencia entre la teoría matemática promedio y lo que ocurre realmente cuando las computadoras están interconectadas en una red.
             </p>
           </div>
           <div>
             <div style="font-weight: bold; font-size: var(--step-0); color: var(--accent); margin-bottom: 4px;">Paso 3: Evaluá mitigaciones</div>
             <p style="font-size: var(--step--1); color: var(--ink-2); margin: 0; line-height: 1.5;">
-              Diseñá campañas de impulsos de parcheo y descubrí la eficiencia superior de la inmunización por conocidos.
+              Diseñá campañas de actualización o aislamiento y descubrí por qué proteger a los nodos más conectados salva a toda la red.
             </p>
           </div>
         </div>

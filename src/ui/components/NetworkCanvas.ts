@@ -44,6 +44,7 @@ export function createNetworkCanvas(): NetworkCanvasHandle {
   const container = document.createElement('div')
   container.className = 'card network-canvas-card'
   container.setAttribute('data-component', 'network-canvas')
+  container.setAttribute('data-ready', 'false')
 
   // Barra de transporte superior
   const header = document.createElement('div')
@@ -402,6 +403,7 @@ export function createNetworkCanvas(): NetworkCanvasHandle {
     })
 
     recalculateSimulation()
+    container.setAttribute('data-ready', 'true')
   }
 
   function destroy(): void {

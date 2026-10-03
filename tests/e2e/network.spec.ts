@@ -22,6 +22,11 @@ test.describe('Simulación en Redes (F4)', () => {
   test('los controles de transporte permiten reproducir y pausar', async ({ page }) => {
     await page.goto('./#/network')
 
+    // Esperar a que el grafo termine de inicializarse y esté listo para reproducir
+    await expect(page.locator('.network-canvas-card[data-ready="true"]')).toBeVisible({
+      timeout: 10000,
+    })
+
     const btnPlay = page.locator('.btn-play')
     await expect(btnPlay).toHaveText(/Reproducir/)
 

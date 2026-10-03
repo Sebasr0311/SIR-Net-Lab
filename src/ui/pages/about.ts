@@ -32,13 +32,13 @@ export function pageAbout(): HTMLElement {
           🎓 Contexto Académico y Objetivos
         </h2>
         <p style="line-height: 1.7; font-size: var(--step--1); color: var(--ink-2);">
-          <strong>SIR-Net Lab</strong> fue concebido y desarrollado como proyecto integrador para el curso universitario de 
-          <strong>Ecuaciones Diferenciales (2026-II)</strong>. Su objetivo fundamental es tender un puente experimental riguroso entre:
+          <strong>SIR-Net Lab</strong> es una plataforma interactiva y proyecto integrador para el curso universitario de 
+          <strong>Ecuaciones Diferenciales (2026-II)</strong>. Su objetivo es conectar los modelos matemáticos teóricos con su aplicación práctica en la ciberseguridad a través de tres pilares:
         </p>
         <ul style="line-height: 1.7; font-size: var(--step--1); color: var(--ink-2);">
-          <li><strong>La teoría clásica de sistemas dinámicos no lineales:</strong> reducción de variables, análisis cualitativo en el plano de fase, bifurcaciones y cálculo de integrales primeras.</li>
-          <li><strong>Los métodos numéricos avanzados:</strong> integradores explícitos de Runge-Kutta (RK4), algoritmos adaptativos con control de paso embebido (Dormand-Prince RK45) y optimización simplex de Nelder–Mead.</li>
-          <li><strong>La física estadística y teoría de grafos:</strong> simulación estocástica continua exacta (Gillespie SSA), modelos de red heterogéneos (Erdős–Rényi, Watts–Strogatz, Barabási–Albert) y el impacto del segundo momento de grado en el umbral epidémico.</li>
+          <li><strong>Modelos epidemiológicos:</strong> comprender cómo evoluciona la propagación de malware dividiendo a los equipos en sanos, infectados y recuperados mediante ecuaciones diferenciales.</li>
+          <li><strong>Simulación computacional:</strong> calcular numéricamente la evolución temporal (mediante métodos de Euler y Runge-Kutta) para analizar escenarios complejos sin requerir fórmulas cerradas.</li>
+          <li><strong>Dinámica en redes y defensa:</strong> estudiar cómo la estructura de una red (conexiones entre servidores y usuarios) determina la rapidez del ataque y evaluar estrategias eficientes de vacunación y parcheo.</li>
         </ul>
       </section>
 

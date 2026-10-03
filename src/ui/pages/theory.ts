@@ -22,8 +22,7 @@ export function pageTheory(): HTMLElement {
           Fundamentos Matemáticos de Modelado Epidémico
         </h1>
         <p class="text-muted" style="color: var(--ink-2); font-size: var(--step-0); line-height: 1.6;">
-          Derivación analítica del sistema SIR, integrales primeras, análisis de bifurcación,
-          ecuaciones trascendentes de tamaño final y propagación estocástica sobre redes heterogéneas.
+          Marco teórico y fundamentos matemáticos del laboratorio. Explicaciones paso a paso, derivaciones claras y glosario interactivo para comprender las fórmulas detrás del simulador.
         </p>
       </header>
 

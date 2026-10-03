@@ -28,20 +28,20 @@ export function pageSensitivity(): HTMLElement {
       <header class="sensitivity-header" style="margin-bottom: var(--space-4);">
         <h1 style="font-size: var(--step-2); margin-bottom: var(--space-1);">Sensibilidad</h1>
         <p class="text-muted" style="color: var(--ink-2); font-size: var(--step--1);">
-          Impacto de incertidumbres paramétricas: elasticidades locales (tornado), bifurcación 2D y Monte Carlo LHS
+          Descubrí qué variables tienen mayor peso en la propagación del malware y cómo pequeñas diferencias en las defensas cambian la magnitud del brote.
         </p>
       </header>
 
       <!-- Pestañas de navegación de modo de sensibilidad -->
       <div class="sensitivity-tabs" role="tablist" aria-label="Modo de análisis de sensibilidad" style="display: flex; gap: var(--space-2); margin-bottom: var(--space-4); border-bottom: 1px solid var(--line); padding-bottom: var(--space-2); flex-wrap: wrap;">
         <button class="btn btn-tab btn-tab-tornado" role="tab" aria-selected="true" aria-controls="panel-tornado" id="tab-tornado" type="button" style="font-weight: 600;">
-          🌪️ Sensibilidad Local (Tornado)
+          🌪️ Impacto por Variable (Tornado)
         </button>
         <button class="btn btn-tab btn-tab-sweep btn--ghost" role="tab" aria-selected="false" aria-controls="panel-sweep" id="tab-sweep" type="button">
-          🗺️ Barrido 2D y Bifurcación (β vs γ)
+          🗺️ Mapa 2D de Riesgo (Contagio vs. Recuperación)
         </button>
         <button class="btn btn-tab btn-tab-lhs btn--ghost" role="tab" aria-selected="false" aria-controls="panel-lhs" id="tab-lhs" type="button">
-          🎲 Sensibilidad Global (LHS en Worker)
+          🎲 Simulación Global de Incertidumbre
         </button>
       </div>
 
@@ -51,33 +51,33 @@ export function pageSensitivity(): HTMLElement {
           
           <!-- Controles de Sensibilidad Local -->
           <div class="card" style="padding: var(--space-4);">
-            <h2 style="font-size: var(--step-0); margin-top: 0; margin-bottom: var(--space-3);">Métrica objetivo y punto base</h2>
+            <h2 style="font-size: var(--step-0); margin-top: 0; margin-bottom: var(--space-3);">Variable a evaluar y valores de referencia</h2>
             
             <div style="margin-bottom: var(--space-3);">
               <label for="select-tornado-metric" style="font-size: var(--step--1); display: block; margin-bottom: 4px; font-weight: 600;">
-                Métrica de salida Y:
+                ¿Qué resultado querés medir?
               </label>
               <select id="select-tornado-metric" aria-label="Seleccionar métrica para el análisis de tornado" style="width: 100%; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--line);">
-                <option value="peakI">Pico de infección máximo (I_max)</option>
-                <option value="r0">Número reproductivo básico (R₀ = β/γ)</option>
-                <option value="attackRate">Tasa de ataque final (Fracción infectada)</option>
-                <option value="peakTime">Tiempo al pico (t_pico)</option>
+                <option value="peakI">Pico máximo de equipos infectados</option>
+                <option value="r0">Ritmo de contagio inicial (R₀)</option>
+                <option value="attackRate">Porcentaje total de equipos afectados</option>
+                <option value="peakTime">Tiempo hasta alcanzar el pico</option>
               </select>
             </div>
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2); margin-bottom: var(--space-3);">
               <div>
-                <label for="local-beta" style="font-size: var(--step--1); display: block; font-weight: 600;">β base:</label>
+                <label for="local-beta" style="font-size: var(--step--1); display: block; font-weight: 600;">Contagio base (β):</label>
                 <input type="number" id="local-beta" aria-label="Beta base para sensibilidad local" value="0.6" step="0.05" min="0.05" max="3" style="width: 100%; padding: 4px 8px;" />
               </div>
               <div>
-                <label for="local-gamma" style="font-size: var(--step--1); display: block; font-weight: 600;">γ base:</label>
+                <label for="local-gamma" style="font-size: var(--step--1); display: block; font-weight: 600;">Recuperación base (γ):</label>
                 <input type="number" id="local-gamma" aria-label="Gamma base para sensibilidad local" value="0.2" step="0.01" min="0.01" max="1" style="width: 100%; padding: 4px 8px;" />
               </div>
             </div>
 
             <div style="font-size: var(--step--1); color: var(--ink-2); line-height: 1.5; background: var(--bg); padding: var(--space-3); border-radius: 6px;">
-              <div>Valor base de la métrica Y: <strong id="local-base-val" style="color: var(--accent); font-family: var(--font-mono);">—</strong></div>
+              <div>Valor base de la métrica: <strong id="local-base-val" style="color: var(--accent); font-family: var(--font-mono);">—</strong></div>
               <div style="margin-top: 4px;">Parámetro más influyente: <strong id="local-top-param" style="color: var(--ink);">—</strong></div>
             </div>
           </div>
@@ -94,7 +94,7 @@ export function pageSensitivity(): HTMLElement {
           
           <!-- Controles del Barrido 2D -->
           <div class="card" style="padding: var(--space-4);">
-            <h2 style="font-size: var(--step-0); margin-top: 0; margin-bottom: var(--space-3);">Espacio de búsqueda 2D</h2>
+            <h2 style="font-size: var(--step-0); margin-top: 0; margin-bottom: var(--space-3);">Rangos de variación de variables</h2>
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2); margin-bottom: var(--space-2);">
               <div>
@@ -123,7 +123,7 @@ export function pageSensitivity(): HTMLElement {
             </button>
 
             <div style="margin-top: var(--space-3); font-size: var(--step--1); color: var(--ink-2); line-height: 1.5;">
-              La línea blanca discontinua representa <strong>R₀ = 1 (β = γ)</strong>. Separa la zona de extinción inmediata de la zona endémica/epidémica con brote.
+              La línea punteada marca el umbral <strong>R₀ = 1 (β = γ)</strong>. Por debajo, el malware se extingue sin causar una epidemia; por encima, el brote se propaga y afecta a la red.
             </div>
           </div>
 
@@ -139,11 +139,11 @@ export function pageSensitivity(): HTMLElement {
           
           <!-- Controles de LHS -->
           <div class="card" style="padding: var(--space-4);">
-            <h2 style="font-size: var(--step-0); margin-top: 0; margin-bottom: var(--space-3);">Muestreo por Hipercubo Latino (LHS)</h2>
+            <h2 style="font-size: var(--step-0); margin-top: 0; margin-bottom: var(--space-3);">Simulación de múltiples escenarios combinados</h2>
 
             <div style="margin-bottom: var(--space-2);">
               <label for="lhs-sample-count" style="font-size: var(--step--1); display: block; margin-bottom: 4px; font-weight: 600;">
-                Número de réplicas Monte Carlo M: <span id="val-lhs-count">1000</span>
+                Cantidad de simulaciones: <span id="val-lhs-count">1000</span>
               </label>
               <input type="range" id="lhs-sample-count" aria-label="Número de muestras para LHS" min="200" max="2500" step="100" value="1000" style="width: 100%;" />
             </div>
@@ -160,7 +160,7 @@ export function pageSensitivity(): HTMLElement {
             </div>
 
             <button class="btn btn--primary" id="btn-run-lhs" type="button" style="width: 100%; margin-top: var(--space-2); font-weight: bold;">
-              ⚡ Ejecutar simulación LHS (Worker)
+              ⚡ Simular escenarios combinados
             </button>
 
             <div id="lhs-status-msg" style="margin-top: var(--space-2); font-size: var(--step--1); color: var(--ink-2); font-family: var(--font-mono);">
