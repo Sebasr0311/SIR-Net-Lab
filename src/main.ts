@@ -15,13 +15,8 @@ import { createAppHeader } from './ui/components/AppHeader.ts'
 import { createAppFooter } from './ui/components/AppFooter.ts'
 import { Router } from './ui/router.ts'
 import { initUrlState } from './state/urlState.ts'
-import {
-  pageHome,
-  pageCalibration,
-  pageSensitivity,
-  pageTheory,
-  pageAbout,
-} from './ui/pages/placeholders.ts'
+import { pageHome, pageSensitivity, pageTheory, pageAbout } from './ui/pages/placeholders.ts'
+import { pageCalibration } from './ui/pages/calibration.ts'
 import { pageSimulator } from './ui/pages/simulator.ts'
 import { pageNetwork } from './ui/pages/network.ts'
 import { pageControl } from './ui/pages/control.ts'
