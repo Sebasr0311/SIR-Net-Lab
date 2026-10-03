@@ -1,0 +1,64 @@
+/* =========================================================
+   tokens.css — Variables de diseño globales (SIR-Net Lab)
+   ========================================================= */
+:root {
+  /* Colores de fondo y superficie */
+  --bg: #fafaf8;
+  --surface: #ffffff;
+
+  /* Tipografía */
+  --ink: #1b1f24;
+  --ink-2: #4a5560;
+
+  /* Bordes */
+  --line: #dde1e6;
+
+  /* Acento principal */
+  --accent: #1f4e79;
+
+  /* Paleta Okabe-Ito para estados epidémicos (apta para daltónicos) */
+  --S: #0072b2; /* Susceptibles  */
+  --E: #e69f00; /* Expuestos     */
+  --I: #d55e00; /* Infectados    */
+  --R: #009e73; /* Recuperados   */
+  --V: #cc79a7; /* Vacunados     */
+
+  /* Semáforos de severidad */
+  --ok: #2e7d32;
+  --warn: #b26a00;
+  --danger: #b3261e;
+
+  /* Forma */
+  --radius: 10px;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.05);
+
+  /* Familias tipográficas */
+  --font-text: 'Source Serif 4', Georgia, serif;
+  --font-ui: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Escala tipográfica (Major Third ×1.25) */
+  --step--1: 0.875rem;
+  --step-0: 1rem;
+  --step-1: 1.25rem;
+  --step-2: 1.563rem;
+  --step-3: 1.953rem;
+
+  /* Espaciado base */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+}
+
+/* Tema oscuro: sólo las variables que cambian */
+[data-theme='dark'] {
+  --bg: #0f1317;
+  --surface: #171c22;
+  --ink: #e8ecf0;
+  --ink-2: #a7b1bb;
+  --line: #2a323b;
+  --accent: #6ca6d9;
+}

@@ -1,0 +1,105 @@
+/* =========================================================
+   fonts.css — Fuentes autoalojadas (SIR-Net Lab)
+
+   NOTA DE PRODUCCIÓN: Descargar los archivos woff2 reales de:
+   - Inter:          https://rsms.me/inter/
+   - Source Serif 4: https://fonts.google.com/specimen/Source+Serif+4
+   - JetBrains Mono: https://www.jetbrains.com/lp/mono/
+   y colocarlos en public/fonts/ antes del deploy.
+
+   Mientras no estén los woff2, se usan fuentes del sistema
+   como fallback mediante local() — el sitio funciona de todas formas.
+   ========================================================= */
+
+/* Inter — fuente de UI principal */
+@font-face {
+  font-family: 'Inter';
+  src:
+    url('/fonts/Inter-Regular.woff2') format('woff2'),
+    local('Inter'),
+    local('system-ui');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src:
+    url('/fonts/Inter-Medium.woff2') format('woff2'),
+    local('Inter Medium'),
+    local('system-ui');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src:
+    url('/fonts/Inter-SemiBold.woff2') format('woff2'),
+    local('Inter SemiBold'),
+    local('system-ui');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src:
+    url('/fonts/Inter-Bold.woff2') format('woff2'),
+    local('Inter Bold'),
+    local('system-ui');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Source Serif 4 — fuente de texto/titulares */
+@font-face {
+  font-family: 'Source Serif 4';
+  src:
+    url('/fonts/SourceSerif4-Regular.woff2') format('woff2'),
+    local('Source Serif 4'),
+    local('Georgia');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Serif 4';
+  src:
+    url('/fonts/SourceSerif4-SemiBold.woff2') format('woff2'),
+    local('Source Serif 4 SemiBold'),
+    local('Georgia');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* JetBrains Mono — fuente monoespaciada para código y valores */
+@font-face {
+  font-family: 'JetBrains Mono';
+  src:
+    url('/fonts/JetBrainsMono-Regular.woff2') format('woff2'),
+    local('JetBrains Mono'),
+    local('ui-monospace'),
+    local('Courier New');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src:
+    url('/fonts/JetBrainsMono-Bold.woff2') format('woff2'),
+    local('JetBrains Mono Bold'),
+    local('ui-monospace'),
+    local('Courier New');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

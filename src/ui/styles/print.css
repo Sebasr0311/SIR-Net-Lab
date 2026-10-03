@@ -1,0 +1,75 @@
+/* =========================================================
+   print.css — Estilos para impresión (SIR-Net Lab)
+   Cargado sólo en @media print.
+   ========================================================= */
+
+@media print {
+  /* Forzar tema claro */
+  :root {
+    --bg: #ffffff !important;
+    --surface: #ffffff !important;
+    --ink: #000000 !important;
+    --ink-2: #333333 !important;
+    --line: #cccccc !important;
+    --accent: #1f4e79 !important;
+  }
+
+  /* Ocultar elementos de navegación y controles interactivos */
+  #site-header,
+  #site-footer,
+  .skip-link,
+  .btn,
+  .slider-field,
+  .segmented,
+  nav,
+  [aria-hidden='true'] {
+    display: none !important;
+  }
+
+  /* Mostrar parámetros de simulación */
+  .params-summary {
+    display: block !important;
+  }
+
+  /* Saltos de página controlados */
+  h1,
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+
+  .card {
+    page-break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid var(--line);
+  }
+
+  /* Expandir todos los acordeones en impresión */
+  details {
+    display: block !important;
+  }
+
+  details > summary {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+  }
+
+  /* Tipografía de impresión */
+  body {
+    font-size: 11pt;
+    line-height: 1.4;
+    font-family: Georgia, serif;
+  }
+
+  a[href]::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.85em;
+    color: #555;
+  }
+
+  /* Pie de página con numeración */
+  @page {
+    margin: 2cm;
+  }
+}

@@ -1,60 +1,65 @@
-import './style.css'
-import heroImg from './assets/hero.png'
-import typescriptLogo from './assets/typescript.svg'
-import viteLogo from './assets/vite.svg'
-import { setupCounter } from './counter.ts'
+/**
+ * @fileoverview Punto de entrada de la aplicación SIR-Net Lab.
+ * Inicializa el tema, monta la cabecera/pie, configura el enrutador y
+ * arranca la sincronización de estado con la URL.
+ */
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-<section id="center">
-  <div class="hero">
-    <img src="${heroImg}" class="base" width="170" height="179">
-    <img src="${typescriptLogo}" class="framework" alt="TypeScript logo"/>
-    <img src="${viteLogo}" class="vite" alt="Vite logo" />
-  </div>
-  <div>
-    <h1>Get started</h1>
-    <p>Edit <code>src/main.ts</code> and save to test <code>HMR</code></p>
-  </div>
-  <button id="counter" type="button" class="counter"></button>
-</section>
+import './ui/styles/tokens.css'
+import './ui/styles/fonts.css'
+import './ui/styles/base.css'
+import './ui/styles/components.css'
+import './ui/styles/print.css'
 
-<div class="ticks"></div>
+import { initTheme } from './ui/theme.ts'
+import { createAppHeader } from './ui/components/AppHeader.ts'
+import { createAppFooter } from './ui/components/AppFooter.ts'
+import { Router } from './ui/router.ts'
+import { initUrlState } from './state/urlState.ts'
+import {
+  pageHome,
+  pageSimulator,
+  pageNetwork,
+  pageControl,
+  pageCalibration,
+  pageSensitivity,
+  pageTheory,
+  pageChallenge,
+  pageAbout,
+} from './ui/pages/placeholders.ts'
+import { pageUiKit } from './ui/pages/uiKit.ts'
 
-<section id="next-steps">
-  <div id="docs">
-    <svg class="icon" role="presentation" aria-hidden="true"><use href="/icons.svg#documentation-icon"></use></svg>
-    <h2>Documentation</h2>
-    <p>Your questions, answered</p>
-    <ul>
-      <li>
-        <a href="https://vite.dev/" target="_blank">
-          <img class="logo" src="${viteLogo}" alt="" />
-          Explore Vite
-        </a>
-      </li>
-      <li>
-        <a href="https://www.typescriptlang.org" target="_blank">
-          <img class="button-icon" src="${typescriptLogo}" alt="">
-          Learn more
-        </a>
-      </li>
-    </ul>
-  </div>
-  <div id="social">
-    <svg class="icon" role="presentation" aria-hidden="true"><use href="/icons.svg#social-icon"></use></svg>
-    <h2>Connect with us</h2>
-    <p>Join the Vite community</p>
-    <ul>
-      <li><a href="https://github.com/vitejs/vite" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#github-icon"></use></svg>GitHub</a></li>
-      <li><a href="https://chat.vite.dev/" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#discord-icon"></use></svg>Discord</a></li>
-      <li><a href="https://x.com/vite_js" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#x-icon"></use></svg>X.com</a></li>
-      <li><a href="https://bsky.app/profile/vite.dev" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#bluesky-icon"></use></svg>Bluesky</a></li>
-    </ul>
-  </div>
-</section>
+// Inicializar tema temprano para evitar destellos (FOUC)
+initTheme()
 
-<div class="ticks"></div>
-<section id="spacer"></section>
-`
+// Montar la cabecera
+const headerSlot = document.getElementById('site-header')
+if (headerSlot) {
+  const header = createAppHeader()
+  headerSlot.replaceWith(header)
+}
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+// Montar el pie de página
+const footerSlot = document.getElementById('site-footer')
+if (footerSlot) {
+  const footer = createAppFooter()
+  footerSlot.replaceWith(footer)
+}
+
+// Configurar el enrutador de hash
+const router = new Router()
+router.register('/', pageHome)
+router.register('/simulator', pageSimulator)
+router.register('/network', pageNetwork)
+router.register('/control', pageControl)
+router.register('/calibration', pageCalibration)
+router.register('/sensitivity', pageSensitivity)
+router.register('/theory', pageTheory)
+router.register('/challenge', pageChallenge)
+router.register('/about', pageAbout)
+router.register('/ui-kit', pageUiKit)
+
+// Inicializar sincronización bidireccional de estado con la URL
+initUrlState()
+
+// Iniciar resolución de rutas
+router.start()

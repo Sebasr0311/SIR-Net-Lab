@@ -1,0 +1,333 @@
+/* =========================================================
+   components.css — Componentes reutilizables (SIR-Net Lab)
+   ========================================================= */
+
+/* ----- Card ----- */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--space-6);
+}
+
+/* ----- Botón base ----- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-ui);
+  font-size: var(--step-0);
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  padding: var(--space-2) var(--space-4);
+  min-height: 44px;
+  min-width: 44px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  transition:
+    filter 0.15s ease,
+    transform 0.1s ease;
+}
+
+.btn:hover {
+  filter: brightness(1.1);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--line);
+}
+
+.btn--ghost:hover {
+  background: var(--line);
+  filter: none;
+}
+
+/* ----- Badge R₀ (semáforo) ----- */
+.badge-r0 {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: 700;
+  padding: var(--space-1) var(--space-3);
+  border-radius: 9999px;
+  border: 1.5px solid currentColor;
+  background: var(--surface);
+}
+
+.badge-r0[data-level='ok'] {
+  color: #1b5e20;
+}
+
+[data-theme='dark'] .badge-r0[data-level='ok'] {
+  color: #81c784;
+}
+
+.badge-r0[data-level='warn'] {
+  color: #854400;
+}
+
+[data-theme='dark'] .badge-r0[data-level='warn'] {
+  color: #ffb74d;
+}
+
+.badge-r0[data-level='danger'] {
+  color: #b3261e;
+}
+
+[data-theme='dark'] .badge-r0[data-level='danger'] {
+  color: #ef9a9a;
+}
+
+/* ----- Slider field ----- */
+.slider-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.slider-field__label-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.slider-field__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.slider-field__range {
+  flex: 1;
+  accent-color: var(--accent);
+  height: 6px;
+  cursor: pointer;
+}
+
+.slider-field__number {
+  width: 72px;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  text-align: center;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: var(--space-1) var(--space-2);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.slider-field__number[aria-invalid='true'] {
+  border-color: var(--danger);
+  outline: 2px solid var(--danger);
+  outline-offset: 1px;
+}
+
+.slider-field__step-btn {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  min-height: 44px;
+  min-width: 44px;
+  background: var(--surface);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.1s;
+}
+
+.slider-field__step-btn:hover {
+  background: var(--line);
+}
+
+/* ----- Segmented control ----- */
+.segmented {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.segmented__btn {
+  flex: 1;
+  font-family: var(--font-ui);
+  font-size: var(--step--1);
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  border-right: 1px solid var(--line);
+  min-height: 44px;
+  padding: var(--space-2) var(--space-4);
+  background: var(--surface);
+  color: var(--ink);
+  transition:
+    background 0.12s,
+    color 0.12s;
+}
+
+.segmented__btn:last-child {
+  border-right: none;
+}
+
+.segmented__btn[aria-pressed='true'] {
+  background: var(--accent);
+  color: #fff;
+}
+
+.segmented__btn:hover:not([aria-pressed='true']) {
+  background: var(--line);
+}
+
+/* ----- Tooltip wrapper ----- */
+.tooltip-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.tooltip-wrap__trigger {
+  cursor: help;
+  font-size: var(--step--1);
+  color: var(--ink-2);
+  background: none;
+  border: none;
+  padding: 0;
+  line-height: 1;
+}
+
+.tooltip-wrap__bubble {
+  position: absolute;
+  bottom: calc(100% + var(--space-2));
+  left: 50%;
+  translate: -50% 0;
+  z-index: 100;
+  max-width: 220px;
+  width: max-content;
+  padding: var(--space-2) var(--space-3);
+  background: var(--ink);
+  color: var(--bg);
+  font-size: var(--step--1);
+  border-radius: 6px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.tooltip-wrap:hover .tooltip-wrap__bubble,
+.tooltip-wrap:focus-within .tooltip-wrap__bubble {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tooltip-wrap__bubble {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ----- Accordion (usa <details>/<summary> nativos) ----- */
+.accordion {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.accordion > details {
+  border-bottom: 1px solid var(--line);
+}
+
+.accordion > details:last-child {
+  border-bottom: none;
+}
+
+.accordion > details > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: var(--space-4) var(--space-6);
+  font-weight: 600;
+  font-size: var(--step-0);
+  list-style: none;
+  background: var(--surface);
+  user-select: none;
+  gap: var(--space-2);
+}
+
+.accordion > details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.accordion > details > summary::after {
+  content: '▸';
+  font-size: var(--step--1);
+  transition: rotate 0.2s ease;
+}
+
+.accordion > details[open] > summary::after {
+  rotate: 90deg;
+}
+
+.accordion__body {
+  padding: var(--space-4) var(--space-6);
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+}
+
+/* ----- KPI Card ----- */
+.kpi-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.kpi-card__label {
+  font-size: var(--step--1);
+  color: var(--ink-2);
+  font-weight: 500;
+}
+
+.kpi-card__value {
+  font-family: var(--font-mono);
+  font-size: var(--step-2);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.kpi-card__unit {
+  font-size: var(--step--1);
+  color: var(--ink-2);
+  font-weight: 400;
+}
+
+/* ----- Layout helpers ----- */
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}

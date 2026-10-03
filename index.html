@@ -1,13 +1,27 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>sir-net-lab</title>
+    <meta
+      name="description"
+      content="Simulador web interactivo de propagación de malware en redes con ecuaciones diferenciales (SIR/SEIR) y simulación estocástica en grafos."
+    />
+    <title>SIR-Net Lab</title>
+    <link rel="stylesheet" href="/src/ui/styles/tokens.css" />
+    <link rel="stylesheet" href="/src/ui/styles/fonts.css" />
+    <link rel="stylesheet" href="/src/ui/styles/base.css" />
+    <link rel="stylesheet" href="/src/ui/styles/components.css" />
+    <link rel="stylesheet" href="/src/ui/styles/print.css" media="print" />
   </head>
   <body>
-    <div id="app"></div>
+    <a href="#main" class="skip-link">Saltar al contenido principal</a>
+    <div id="app">
+      <header id="site-header"></header>
+      <main id="main" tabindex="-1"></main>
+      <footer id="site-footer"></footer>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
