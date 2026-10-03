@@ -11,13 +11,6 @@ type Theme = 'light' | 'dark'
 const STORAGE_KEY = 'theme'
 
 /**
- * Detecta la preferencia de tema del sistema operativo.
- */
-function getSystemTheme(): Theme {
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-}
-
-/**
  * Lee el tema guardado en localStorage; null si no hay preferencia guardada.
  */
 function getSavedTheme(): Theme | null {
@@ -39,21 +32,13 @@ function applyTheme(theme: Theme): void {
 
 /**
  * Inicializa el sistema de temas:
- * 1. Lee localStorage; si no hay preferencia, usa el sistema.
+ * 1. Lee localStorage; si no hay preferencia guardada, usa el tema claro por defecto.
  * 2. Aplica el tema inmediatamente para evitar destellos (FOUC).
- * 3. Escucha cambios del sistema mientras no haya preferencia guardada.
  */
 export function initTheme(): void {
   const saved = getSavedTheme()
-  const theme = saved ?? getSystemTheme()
+  const theme = saved ?? 'light'
   applyTheme(theme)
-
-  // Escuchar cambios del sistema sólo cuando el usuario no fijó preferencia
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    if (getSavedTheme() === null) {
-      applyTheme(e.matches ? 'dark' : 'light')
-    }
-  })
 }
 
 /**

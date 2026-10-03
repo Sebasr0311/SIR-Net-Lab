@@ -29,18 +29,19 @@ test.describe('Navegación y accesibilidad básica', () => {
     const themeBtn = page.locator('#theme-toggle')
     await expect(themeBtn).toBeVisible()
 
-    // Leer tema inicial
+    // El tema predeterminado debe ser claro (sin data-theme o null)
     const initialTheme = await page.locator('html').getAttribute('data-theme')
+    expect(initialTheme).toBeNull()
 
-    // Conmutar tema
+    // Conmutar tema a oscuro
     await themeBtn.click()
     const newTheme = await page.locator('html').getAttribute('data-theme')
-    expect(newTheme).not.toBe(initialTheme)
+    expect(newTheme).toBe('dark')
 
-    // Conmutar de vuelta
+    // Conmutar de vuelta a claro
     await themeBtn.click()
     const revertedTheme = await page.locator('html').getAttribute('data-theme')
-    expect(revertedTheme).toBe(initialTheme)
+    expect(revertedTheme).toBeNull()
   })
 
   test('el skip-link está presente y es accesible', async ({ page }) => {
