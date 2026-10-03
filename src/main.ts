@@ -17,7 +17,6 @@ import { Router } from './ui/router.ts'
 import { initUrlState } from './state/urlState.ts'
 import {
   pageHome,
-  pageSimulator,
   pageNetwork,
   pageControl,
   pageCalibration,
@@ -26,6 +25,7 @@ import {
   pageChallenge,
   pageAbout,
 } from './ui/pages/placeholders.ts'
+import { pageSimulator } from './ui/pages/simulator.ts'
 import { pageUiKit } from './ui/pages/uiKit.ts'
 
 // Inicializar tema temprano para evitar destellos (FOUC)

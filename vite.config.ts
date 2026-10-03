@@ -7,6 +7,7 @@ export default defineConfig({
     exclude: ['tests/e2e/**'],
     coverage: {
       provider: 'v8',
+      include: ['src/core/**', 'src/sim/**'],
       threshold: {
         lines: 90,
       },

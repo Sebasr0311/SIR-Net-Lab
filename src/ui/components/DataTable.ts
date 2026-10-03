@@ -1,0 +1,152 @@
+/**
+ * @fileoverview Tabla de datos accesible y exportador CSV para las series temporales.
+ * Cumple RNF-04 (alternativa textual con caption y headers accesibles) y T3.6.
+ * (SIR-Net Lab)
+ */
+
+import type { TimeChartSeries } from './TimeChart.ts'
+
+export interface DataTableHandle {
+  el: HTMLElement
+  update: (series: TimeChartSeries, r0: number, N: number) => void
+}
+
+export function createDataTable(): DataTableHandle {
+  const container = document.createElement('div')
+  container.className = 'card data-table-card'
+  container.setAttribute('data-component', 'data-table')
+
+  container.innerHTML = `
+    <div class="data-table-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4); flex-wrap: wrap; gap: var(--space-2);">
+      <div>
+        <h2 style="font-size: var(--step-1);">Datos de la simulación</h2>
+        <p class="text-muted" style="font-size: var(--step--1); color: var(--ink-2);">Tabla accesible y exportación de datos crudos</p>
+      </div>
+      <div style="display: flex; gap: var(--space-2);">
+        <button class="btn btn--ghost btn-toggle-table" type="button" aria-expanded="false">
+          👁 Ver tabla de datos
+        </button>
+        <button class="btn btn-download-csv" type="button">
+          📥 Descargar CSV
+        </button>
+      </div>
+    </div>
+    <div class="data-table-wrap" style="display: none; overflow-x: auto; max-height: 320px; border: 1px solid var(--line); border-radius: 6px;">
+      <table class="accessible-table" style="width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: var(--step--1);">
+        <caption style="text-align: left; padding: var(--space-2); font-weight: bold; font-family: var(--font-ui);">
+          Valores calculados de la población por compartimento en función del tiempo
+        </caption>
+        <thead>
+          <tr style="background: var(--line); text-align: right;">
+            <th scope="col" style="padding: var(--space-2); text-align: left;">t (días)</th>
+            <th scope="col" style="padding: var(--space-2); color: var(--S);">S</th>
+            <th scope="col" style="padding: var(--space-2); color: var(--E);" class="col-e">E</th>
+            <th scope="col" style="padding: var(--space-2); color: var(--I);">I</th>
+            <th scope="col" style="padding: var(--space-2); color: var(--R);">R</th>
+            <th scope="col" style="padding: var(--space-2);">R_ef</th>
+          </tr>
+        </thead>
+        <tbody class="table-body">
+          <!-- Se llena dinámicamente -->
+        </tbody>
+      </table>
+    </div>
+  `
+
+  const btnToggle = container.querySelector<HTMLButtonElement>('.btn-toggle-table')
+  const btnCsv = container.querySelector<HTMLButtonElement>('.btn-download-csv')
+  const tableWrap = container.querySelector<HTMLElement>('.data-table-wrap')
+  const tbody = container.querySelector<HTMLTableSectionElement>('.table-body')
+  const colE = container.querySelector<HTMLTableCellElement>('.col-e')
+
+  let currentSeries: TimeChartSeries | null = null
+  let currentR0 = 3
+  let currentN = 1000
+
+  if (btnToggle && tableWrap) {
+    btnToggle.addEventListener('click', () => {
+      const isVisible = tableWrap.style.display !== 'none'
+      tableWrap.style.display = isVisible ? 'none' : 'block'
+      btnToggle.setAttribute('aria-expanded', String(!isVisible))
+      btnToggle.textContent = isVisible ? '👁 Ver tabla de datos' : '✕ Ocultar tabla de datos'
+    })
+  }
+
+  if (btnCsv) {
+    btnCsv.addEventListener('click', () => {
+      if (!currentSeries || currentSeries.t.length === 0) return
+
+      const headers = currentSeries.E ? 't (dias),S,E,I,R,R_ef\n' : 't (dias),S,I,R,R_ef\n'
+
+      const rows = currentSeries.t.map((t, idx) => {
+        const sVal = (currentSeries?.S[idx] ?? 0).toFixed(2)
+        const iVal = (currentSeries?.I[idx] ?? 0).toFixed(2)
+        const rVal = (currentSeries?.R[idx] ?? 0).toFixed(2)
+        const rEff = ((currentR0 * (currentSeries?.S[idx] ?? 0)) / currentN).toFixed(3)
+
+        if (currentSeries?.E) {
+          const eVal = (currentSeries.E[idx] ?? 0).toFixed(2)
+          return `${t.toFixed(2)},${sVal},${eVal},${iVal},${rVal},${rEff}`
+        }
+        return `${t.toFixed(2)},${sVal},${iVal},${rVal},${rEff}`
+      })
+
+      const csvContent = headers + rows.join('\n')
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' })
+      const url = URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = url
+      link.setAttribute('download', 'sir-net-lab-series.csv')
+      document.body.appendChild(link)
+      link.click()
+      link.remove()
+      URL.revokeObjectURL(url)
+    })
+  }
+
+  function update(series: TimeChartSeries, r0: number, N: number): void {
+    currentSeries = series
+    currentR0 = r0
+    currentN = N
+
+    if (!tbody) return
+    tbody.innerHTML = ''
+
+    const hasE = Boolean(series.E && series.E.length > 0)
+    if (colE) {
+      colE.style.display = hasE ? '' : 'none'
+    }
+
+    // Submuestrear para renderizar ~25 filas en pantalla
+    const step = Math.max(1, Math.floor(series.t.length / 25))
+
+    for (let i = 0; i < series.t.length; i += step) {
+      const tVal = series.t[i] ?? 0
+      const sVal = series.S[i] ?? 0
+      const iVal = series.I[i] ?? 0
+      const rVal = series.R[i] ?? 0
+      const rEff = ((r0 * sVal) / N).toFixed(2)
+
+      const tr = document.createElement('tr')
+      tr.style.borderBottom = '1px solid var(--line)'
+
+      let html = `
+        <td style="padding: var(--space-1) var(--space-2); text-align: left;">${tVal.toFixed(1)}</td>
+        <td style="padding: var(--space-1) var(--space-2); text-align: right;">${Math.round(sVal)}</td>
+      `
+      if (hasE && series.E) {
+        const eVal = series.E[i] ?? 0
+        html += `<td style="padding: var(--space-1) var(--space-2); text-align: right;">${Math.round(eVal)}</td>`
+      }
+      html += `
+        <td style="padding: var(--space-1) var(--space-2); text-align: right;">${Math.round(iVal)}</td>
+        <td style="padding: var(--space-1) var(--space-2); text-align: right;">${Math.round(rVal)}</td>
+        <td style="padding: var(--space-1) var(--space-2); text-align: right;">${rEff}</td>
+      `
+      tr.innerHTML = html
+      tbody.appendChild(tr)
+    }
+  }
+
+  return { el: container, update }
+}
