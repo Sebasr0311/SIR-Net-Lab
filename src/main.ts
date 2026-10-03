@@ -17,15 +17,15 @@ import { Router } from './ui/router.ts'
 import { initUrlState } from './state/urlState.ts'
 import {
   pageHome,
-  pageControl,
   pageCalibration,
   pageSensitivity,
   pageTheory,
-  pageChallenge,
   pageAbout,
 } from './ui/pages/placeholders.ts'
 import { pageSimulator } from './ui/pages/simulator.ts'
 import { pageNetwork } from './ui/pages/network.ts'
+import { pageControl } from './ui/pages/control.ts'
+import { pageChallenge } from './ui/pages/challenge.ts'
 import { pageUiKit } from './ui/pages/uiKit.ts'
 
 // Inicializar tema temprano para evitar destellos (FOUC)

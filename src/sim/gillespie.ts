@@ -12,6 +12,7 @@ export const NODE_STATE = {
   EXPOSED: 1,
   INFECTIOUS: 2,
   RECOVERED: 3,
+  REMOVED: 3,
 } as const
 
 export type NodeState = (typeof NODE_STATE)[keyof typeof NODE_STATE]
@@ -28,6 +29,8 @@ export interface GillespieParams {
   i0?: number
   /** Nodos específicos a infectar al inicio (opcional) */
   initialSeeds?: number[]
+  /** Nodos específicos pre-inmunizados o removidos al inicio (opcional) */
+  initialRemoved?: number[]
   /** Tiempo máximo de simulación */
   tMax?: number
   /** Intervalo de muestreo para la serie temporal */
@@ -61,6 +64,7 @@ export function simulateGillespie(params: GillespieParams): GillespieResult {
     sigma = 0,
     i0 = 1,
     initialSeeds,
+    initialRemoved,
     tMax = 60,
     dt = 0.2,
     seed = 42,
@@ -110,20 +114,41 @@ export function simulateGillespie(params: GillespieParams): GillespieResult {
   let iCount = 0
   let rCount = 0
 
+  // Pre-inmunización / remoción inicial de nodos (estrategias de control)
+  const removedSet = new Set<number>()
+  if (initialRemoved && initialRemoved.length > 0) {
+    for (let i = 0; i < initialRemoved.length; i++) {
+      const node = initialRemoved[i]
+      if (node !== undefined && node >= 0 && node < n && !removedSet.has(node)) {
+        removedSet.add(node)
+        states[node] = NODE_STATE.REMOVED
+        sCount--
+        rCount++
+      }
+    }
+  }
+
+  const initialSusceptible = sCount
+
   // Sembrado inicial de infección
   const seedsToInfect: number[] = []
   if (initialSeeds && initialSeeds.length > 0) {
-    seedsToInfect.push(...initialSeeds.filter((idx) => idx >= 0 && idx < n))
+    seedsToInfect.push(...initialSeeds.filter((idx) => idx >= 0 && idx < n && !removedSet.has(idx)))
   } else {
-    // Escoger i0 nodos aleatorios
-    const count = Math.min(n, Math.max(1, i0))
-    const perm: number[] = Array.from({ length: n }, (_, i) => i)
+    // Escoger i0 nodos aleatorios entre los susceptibles disponibles
+    const candidates: number[] = []
+    for (let i = 0; i < n; i++) {
+      if (states[i] === NODE_STATE.SUSCEPTIBLE) {
+        candidates.push(i)
+      }
+    }
+    const count = Math.min(candidates.length, Math.max(1, i0))
     for (let i = 0; i < count; i++) {
-      const j = i + Math.floor(rng() * (n - i))
-      const temp = perm[i] ?? 0
-      perm[i] = perm[j] ?? 0
-      perm[j] = temp
-      seedsToInfect.push(perm[i] ?? 0)
+      const j = i + Math.floor(rng() * (candidates.length - i))
+      const temp = candidates[i] ?? 0
+      candidates[i] = candidates[j] ?? 0
+      candidates[j] = temp
+      seedsToInfect.push(candidates[i] ?? 0)
     }
   }
 
@@ -315,7 +340,7 @@ export function simulateGillespie(params: GillespieParams): GillespieResult {
     S: new Float64Array(sampleS),
     I: new Float64Array(sampleI),
     R: new Float64Array(sampleR),
-    totalInfected: n - sCount,
+    totalInfected: initialSusceptible - sCount,
     duration: currentTime,
   }
 
